@@ -6,9 +6,9 @@ import { useForm } from 'react-hook-form';
 import {
   registerSchema,
   RegisterFormData,
-} from '../schemas/auth.schema';
+} from '../../../../schemas/auth.schema';
 
-import { useRegister } from '../hooks/useRegister';
+import { useRegister } from '../../../../hooks/useRegister';
 
 export default function RegisterForm() {
   const registerMutation = useRegister();

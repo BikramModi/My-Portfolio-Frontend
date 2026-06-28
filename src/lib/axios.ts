@@ -4,14 +4,17 @@ import axios, {
   InternalAxiosRequestConfig,
 } from 'axios';
 
-import { triggerLogout } from '../context/authStore';
+import { triggerLogout } from '@/context/authStore';
+
+import { env } from '@/lib/client_env';
+
 
 interface RetryRequestConfig extends InternalAxiosRequestConfig {
   _retry?: boolean;
 }
 
 const api: AxiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+  baseURL: env.NEXT_PUBLIC_API_BASE_URL,
   withCredentials: true,
   timeout: 10000,
   headers: {
@@ -19,7 +22,7 @@ const api: AxiosInstance = axios.create({
   },
 });
 
-console.log('API Base URL:', process.env.NEXT_PUBLIC_API_BASE_URL);
+console.log('API Base URL:', env.NEXT_PUBLIC_API_BASE_URL);
 
 api.interceptors.response.use(
   (response) => response,
