@@ -1,9 +1,13 @@
-let logoutHandler: (() => void) | null = null;
+let logoutHandler: (() => Promise<void>) | null = null;
 
-export const setLogoutHandler = (handler: () => void) => {
+export const setLogoutHandler = (
+  handler: () => Promise<void>
+) => {
   logoutHandler = handler;
 };
 
-export const triggerLogout = () => {
-  logoutHandler?.();
+export const triggerLogout = async () => {
+  if (logoutHandler) {
+    await logoutHandler();
+  }
 };
