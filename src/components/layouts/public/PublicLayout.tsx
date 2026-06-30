@@ -7,14 +7,17 @@ export default function PublicLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
-      <Header />
+    <div className="min-h-screen flex flex-col bg-slate-50">
+      {/* Center everything and add left/right spacing */}
+      
+        <Header />
 
-      <main className="mx-auto w-full max-w-7xl flex-1 px-6 py-10">
-        {children}
-      </main>
+        <main className="flex-1">
+          {children}
+        </main>
 
-      <Footer />
-    </>
+        <Footer />
+      
+    </div>
   );
 }

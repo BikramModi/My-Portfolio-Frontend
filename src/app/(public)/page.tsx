@@ -4,20 +4,26 @@ import {
   Experience,
   ProjectsPreview,
   ContactCTA,
+  About,
 } from '@/components/pages/public/home';
 
 export default function HomePage() {
   return (
     <>
-      <Hero />
 
-      <Skills />
+        <Hero />
 
-      <Experience />
+        <About />
 
-      <ProjectsPreview />
+        <Skills />
 
-      <ContactCTA />
+        <Experience />
+
+        <ProjectsPreview />
+
+        <ContactCTA />
+      
+    
     </>
   );
 }
