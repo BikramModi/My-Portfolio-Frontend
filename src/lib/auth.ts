@@ -1,11 +1,11 @@
-import api from "@/lib/axios";
-import { API_ENDPOINTS } from "@/constants/api.constant";
+import api from '@/lib/axios';
+import { API_ENDPOINTS } from '@/constants/api.constant';
 
 export interface CurrentUser {
   _id: string;
   name: string;
   email: string;
-  role: "user" | "admin";
+  role: 'user' | 'admin';
   profileImage?: string;
 }
 

@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Projects", href: "/projects" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: 'Home', href: '/' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export default function Header() {
@@ -27,8 +27,8 @@ export default function Header() {
               href={item.href}
               className={`transition-colors ${
                 pathname === item.href
-                  ? "font-semibold text-blue-600"
-                  : "text-gray-600 hover:text-black"
+                  ? 'font-semibold text-blue-600'
+                  : 'text-gray-600 hover:text-black'
               }`}
             >
               {item.label}

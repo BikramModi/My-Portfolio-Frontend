@@ -1,46 +1,38 @@
-"use client";
+'use client';
 
-import {
-  Briefcase,
-  CalendarDays,
-  MapPin,
-} from "lucide-react";
+import { Briefcase, CalendarDays, MapPin } from 'lucide-react';
 
 const experiences = [
   {
-    role: "Full Stack MERN Developer",
-    company: "Freelance",
-    period: "2024 - Present",
-    location: "Remote",
+    role: 'Full Stack MERN Developer',
+    company: 'Freelance',
+    period: '2024 - Present',
+    location: 'Remote',
     description:
-      "Building modern web applications using React, Next.js, Node.js, Express, MongoDB and TypeScript. Focused on authentication, REST APIs, dashboards and responsive UI.",
+      'Building modern web applications using React, Next.js, Node.js, Express, MongoDB and TypeScript. Focused on authentication, REST APIs, dashboards and responsive UI.',
   },
   {
-    role: "Frontend Developer",
-    company: "Personal Projects",
-    period: "2023 - 2024",
-    location: "Nepal",
+    role: 'Frontend Developer',
+    company: 'Personal Projects',
+    period: '2023 - 2024',
+    location: 'Nepal',
     description:
-      "Developed responsive websites and reusable React components while learning modern frontend architecture and performance optimization.",
+      'Developed responsive websites and reusable React components while learning modern frontend architecture and performance optimization.',
   },
   {
-    role: "Computer Science Student",
-    company: "Academic Journey",
-    period: "2021 - Present",
-    location: "Nepal",
+    role: 'Computer Science Student',
+    company: 'Academic Journey',
+    period: '2021 - Present',
+    location: 'Nepal',
     description:
-      "Learning software engineering, databases, networking, operating systems and full stack development through academic and personal projects.",
+      'Learning software engineering, databases, networking, operating systems and full stack development through academic and personal projects.',
   },
 ];
 
 export default function Experience() {
   return (
-    <section
-      id="experience"
-      className="bg-slate-50 py-2 sm:py-2 lg:py-3"
-    >
+    <section id="experience" className="bg-slate-50 py-2 sm:py-2 lg:py-3">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10 xl:px-12">
-
         {/* Heading */}
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
@@ -53,14 +45,13 @@ export default function Experience() {
           </h2>
 
           <p className="mt-6 text-base leading-8 text-slate-600 sm:text-lg">
-            My learning path and experience in building modern,
-            scalable web applications.
+            My learning path and experience in building modern, scalable web
+            applications.
           </p>
         </div>
 
         {/* Timeline */}
         <div className="relative mx-auto mt-20 max-w-4xl">
-
           {/* Vertical Line */}
           <div className="absolute left-5 top-0 h-full w-0.5 bg-blue-200 md:left-1/2 md:-translate-x-1/2" />
 
@@ -69,9 +60,7 @@ export default function Experience() {
               <div
                 key={index}
                 className={`relative flex ${
-                  index % 2 === 0
-                    ? "md:justify-start"
-                    : "md:justify-end"
+                  index % 2 === 0 ? 'md:justify-start' : 'md:justify-end'
                 }`}
               >
                 {/* Dot */}
@@ -79,7 +68,6 @@ export default function Experience() {
 
                 {/* Card */}
                 <div className="ml-14 w-full rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl md:ml-0 md:w-[45%]">
-
                   <h3 className="text-xl font-bold text-slate-900 sm:text-2xl">
                     {item.role}
                   </h3>
@@ -89,7 +77,6 @@ export default function Experience() {
                   </p>
 
                   <div className="mt-4 flex flex-wrap gap-5 text-sm text-slate-500">
-
                     <div className="flex items-center gap-2">
                       <CalendarDays size={16} />
                       {item.period}
@@ -99,18 +86,15 @@ export default function Experience() {
                       <MapPin size={16} />
                       {item.location}
                     </div>
-
                   </div>
 
                   <p className="mt-5 leading-7 text-slate-600">
                     {item.description}
                   </p>
-
                 </div>
               </div>
             ))}
           </div>
-
         </div>
       </div>
     </section>

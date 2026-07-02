@@ -10,20 +10,17 @@ import {
 export default function HomePage() {
   return (
     <>
+      <Hero />
 
-        <Hero />
+      <About />
 
-        <About />
+      <Skills />
 
-        <Skills />
+      <Experience />
 
-        <Experience />
+      <ProjectsPreview />
 
-        <ProjectsPreview />
-
-        <ContactCTA />
-      
-    
+      <ContactCTA />
     </>
   );
 }

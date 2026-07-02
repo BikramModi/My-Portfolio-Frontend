@@ -1,32 +1,27 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import {
-  ArrowRight,
-  Download,
-  Mail,
-  MapPin,
-} from "lucide-react";
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight, Download, Mail, MapPin } from 'lucide-react';
 import {
   FaGithub,
   FaLinkedin,
   FaReact,
   FaNodeJs,
   FaDocker,
-} from "react-icons/fa";
+} from 'react-icons/fa';
 import {
   SiNextdotjs,
   SiTypescript,
   SiTailwindcss,
   SiMongodb,
-} from "react-icons/si";
+} from 'react-icons/si';
 
 export default function Hero() {
   return (
     <section className="w-full bg-slate-50 py-0">
       <div className="mx-auto max-w-[95%] px-6 pt-8 pb-16 sm:px-8 lg:px-10 xl:px-12">
-       <div className="grid items-start gap-12 lg:grid-cols-3">
+        <div className="grid items-start gap-12 lg:grid-cols-3">
           {/* ================= LEFT ================= */}
           <div className="order-2 space-y-6 text-center lg:order-1 lg:text-left">
             <div className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
@@ -36,9 +31,7 @@ export default function Hero() {
 
             <h1 className="text-4xl font-extrabold leading-tight text-slate-900 sm:text-5xl lg:text-6xl">
               Full Stack
-              <span className="block text-blue-600">
-                MERN Developer
-              </span>
+              <span className="block text-blue-600">MERN Developer</span>
             </h1>
 
             <p className="text-base leading-8 text-slate-600 sm:text-lg">
@@ -145,29 +138,19 @@ export default function Hero() {
 
                 <div className="flex items-center gap-3 rounded-xl bg-blue-600 p-3 text-white">
                   <ArrowRight className="text-2xl" />
-                  <span className="font-medium">
-                    Explore
-                  </span>
+                  <span className="font-medium">Explore</span>
                 </div>
               </div>
 
               <div className="mt-8 grid grid-cols-2 gap-4 border-t pt-6">
                 <div className="text-center">
-                  <h3 className="text-3xl font-bold text-blue-600">
-                    20+
-                  </h3>
-                  <p className="text-sm text-slate-500">
-                    Projects
-                  </p>
+                  <h3 className="text-3xl font-bold text-blue-600">20+</h3>
+                  <p className="text-sm text-slate-500">Projects</p>
                 </div>
 
                 <div className="text-center">
-                  <h3 className="text-3xl font-bold text-blue-600">
-                    10+
-                  </h3>
-                  <p className="text-sm text-slate-500">
-                    Technologies
-                  </p>
+                  <h3 className="text-3xl font-bold text-blue-600">10+</h3>
+                  <p className="text-sm text-slate-500">Technologies</p>
                 </div>
               </div>
             </div>

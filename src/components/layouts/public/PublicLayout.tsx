@@ -1,5 +1,5 @@
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from './Header';
+import Footer from './Footer';
 
 export default function PublicLayout({
   children,
@@ -9,15 +9,12 @@ export default function PublicLayout({
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
       {/* Center everything and add left/right spacing */}
-      
-        <Header />
 
-        <main className="flex-1">
-          {children}
-        </main>
+      <Header />
 
-        <Footer />
-      
+      <main className="flex-1">{children}</main>
+
+      <Footer />
     </div>
   );
 }

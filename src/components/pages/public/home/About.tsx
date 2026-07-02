@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import Link from "next/link";
+import Link from 'next/link';
 import {
   ArrowRight,
   Download,
@@ -8,7 +8,7 @@ import {
   Code2,
   Briefcase,
   GraduationCap,
-} from "lucide-react";
+} from 'lucide-react';
 
 export default function About() {
   return (
@@ -38,13 +38,11 @@ export default function About() {
           <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 transition hover:-translate-y-1 hover:shadow-lg">
             <Code2 className="text-blue-600" size={36} />
 
-            <h3 className="mt-5 text-xl font-bold">
-              Development
-            </h3>
+            <h3 className="mt-5 text-xl font-bold">Development</h3>
 
             <p className="mt-3 leading-7 text-slate-600">
-              Building responsive, modern web applications with React,
-              Next.js, Node.js, Express, MongoDB and TypeScript.
+              Building responsive, modern web applications with React, Next.js,
+              Node.js, Express, MongoDB and TypeScript.
             </p>
           </div>
 
@@ -52,13 +50,11 @@ export default function About() {
           <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 transition hover:-translate-y-1 hover:shadow-lg">
             <Briefcase className="text-blue-600" size={36} />
 
-            <h3 className="mt-5 text-xl font-bold">
-              Projects
-            </h3>
+            <h3 className="mt-5 text-xl font-bold">Projects</h3>
 
             <p className="mt-3 leading-7 text-slate-600">
-              Experienced in authentication, REST APIs, dashboards,
-              payment integration, and full-stack MERN applications.
+              Experienced in authentication, REST APIs, dashboards, payment
+              integration, and full-stack MERN applications.
             </p>
           </div>
 
@@ -66,13 +62,11 @@ export default function About() {
           <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 transition hover:-translate-y-1 hover:shadow-lg">
             <GraduationCap className="text-blue-600" size={36} />
 
-            <h3 className="mt-5 text-xl font-bold">
-              Learning
-            </h3>
+            <h3 className="mt-5 text-xl font-bold">Learning</h3>
 
             <p className="mt-3 leading-7 text-slate-600">
-              Constantly learning new technologies including Docker,
-              CI/CD, cloud deployment, and software architecture.
+              Constantly learning new technologies including Docker, CI/CD,
+              cloud deployment, and software architecture.
             </p>
           </div>
         </div>

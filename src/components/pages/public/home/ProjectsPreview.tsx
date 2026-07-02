@@ -1,49 +1,43 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import {
-  ArrowRight,
-  ExternalLink,
-  FolderGit2,
-} from "lucide-react";
-import { FaGithub } from "react-icons/fa";
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight, ExternalLink, FolderGit2 } from 'lucide-react';
+import { FaGithub } from 'react-icons/fa';
 
 const projects = [
   {
-    title: "Developer Portfolio",
-    description: "Modern portfolio built with Next.js, TypeScript and Tailwind CSS.",
-    image: "/images/profile.jpg",
-    tech: ["Next.js", "TypeScript", "Tailwind"],
-    github: "#",
-    demo: "#",
+    title: 'Developer Portfolio',
+    description:
+      'Modern portfolio built with Next.js, TypeScript and Tailwind CSS.',
+    image: '/images/profile.jpg',
+    tech: ['Next.js', 'TypeScript', 'Tailwind'],
+    github: '#',
+    demo: '#',
   },
   {
-    title: "MERN E-Commerce",
-    description: "Full-stack e-commerce application with authentication and Stripe.",
-    image: "/images/profile.jpg",
-    tech: ["React", "Node.js", "MongoDB"],
-    github: "#",
-    demo: "#",
+    title: 'MERN E-Commerce',
+    description:
+      'Full-stack e-commerce application with authentication and Stripe.',
+    image: '/images/profile.jpg',
+    tech: ['React', 'Node.js', 'MongoDB'],
+    github: '#',
+    demo: '#',
   },
   {
-    title: "Chat Application",
-    description: "Real-time chat application using Socket.IO and MongoDB.",
-    image: "/images/profile.jpg",
-    tech: ["Socket.IO", "Express", "MongoDB"],
-    github: "#",
-    demo: "#",
+    title: 'Chat Application',
+    description: 'Real-time chat application using Socket.IO and MongoDB.',
+    image: '/images/profile.jpg',
+    tech: ['Socket.IO', 'Express', 'MongoDB'],
+    github: '#',
+    demo: '#',
   },
 ];
 
 export default function ProjectsPreview() {
   return (
-    <section
-      id="projects"
-      className="bg-slate-50 py-2 sm:py-2 lg:py-3"
-    >
+    <section id="projects" className="bg-slate-50 py-2 sm:py-2 lg:py-3">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10 xl:px-12">
-
         {/* Heading */}
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
@@ -133,7 +127,6 @@ export default function ProjectsPreview() {
             <ArrowRight size={18} />
           </Link>
         </div>
-
       </div>
     </section>
   );

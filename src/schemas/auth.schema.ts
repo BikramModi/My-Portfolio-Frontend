@@ -11,10 +11,7 @@ export const registerSchema = z
       .min(3, 'Name must be at least 3 characters')
       .max(50, 'Name must not exceed 50 characters'),
 
-    email: z
-      .string()
-      .trim()
-      .email('Please enter a valid email address'),
+    email: z.string().trim().email('Please enter a valid email address'),
 
     password: z
       .string()
@@ -24,9 +21,7 @@ export const registerSchema = z
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
         'Password must contain at least one uppercase letter, one lowercase letter and one number'
       ),
-    confirmPassword: z
-      .string()
-      .min(1, 'Please confirm your password'),
+    confirmPassword: z.string().min(1, 'Please confirm your password'),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: 'Passwords do not match',
@@ -37,14 +32,9 @@ export const registerSchema = z
  * Login Schema
  */
 export const loginSchema = z.object({
-  email: z
-    .string()
-    .trim()
-    .email('Please enter a valid email address'),
+  email: z.string().trim().email('Please enter a valid email address'),
 
-  password: z
-    .string()
-    .min(1, 'Password is required'),
+  password: z.string().min(1, 'Password is required'),
 });
 
 /**

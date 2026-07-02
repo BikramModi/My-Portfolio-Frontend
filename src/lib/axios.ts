@@ -8,7 +8,6 @@ import { triggerLogout } from '@/context/authStore';
 
 import { env } from '@/lib/client_env';
 
-
 interface RetryRequestConfig extends InternalAxiosRequestConfig {
   _retry?: boolean;
 }
@@ -35,10 +34,7 @@ api.interceptors.response.use(
     }
 
     // Access token expired
-    if (
-      error.response.status === 403 &&
-      !originalRequest._retry
-    ) {
+    if (error.response.status === 403 && !originalRequest._retry) {
       originalRequest._retry = true;
 
       try {

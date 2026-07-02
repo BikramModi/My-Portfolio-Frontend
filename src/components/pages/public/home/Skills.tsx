@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { ArrowRight, Code2 } from "lucide-react";
+import Link from 'next/link';
+import { ArrowRight, Code2 } from 'lucide-react';
 import {
   FaReact,
   FaNodeJs,
   FaDocker,
   FaGitAlt,
   FaGithub,
-} from "react-icons/fa";
+} from 'react-icons/fa';
 import {
   SiNextdotjs,
   SiTypescript,
@@ -20,32 +20,29 @@ import {
   SiPostgresql,
   SiMysql,
   SiRedux,
-} from "react-icons/si";
+} from 'react-icons/si';
 
 const skills = [
-  { name: "React", icon: <FaReact className="text-sky-500" /> },
-  { name: "Next.js", icon: <SiNextdotjs /> },
-  { name: "TypeScript", icon: <SiTypescript className="text-blue-600" /> },
-  { name: "JavaScript", icon: <SiJavascript className="text-yellow-500" /> },
-  { name: "Tailwind CSS", icon: <SiTailwindcss className="text-cyan-500" /> },
-  { name: "Redux", icon: <SiRedux className="text-purple-600" /> },
-  { name: "Node.js", icon: <FaNodeJs className="text-green-600" /> },
-  { name: "Express.js", icon: <SiExpress /> },
-  { name: "MongoDB", icon: <SiMongodb className="text-green-600" /> },
-  { name: "Redis", icon: <SiRedis className="text-red-500" /> },
-  { name: "PostgreSQL", icon: <SiPostgresql className="text-blue-700" /> },
-  { name: "MySQL", icon: <SiMysql className="text-blue-500" /> },
-  { name: "Git", icon: <FaGitAlt className="text-orange-500" /> },
-  { name: "GitHub", icon: <FaGithub /> },
-  { name: "Docker", icon: <FaDocker className="text-blue-500" /> },
+  { name: 'React', icon: <FaReact className="text-sky-500" /> },
+  { name: 'Next.js', icon: <SiNextdotjs /> },
+  { name: 'TypeScript', icon: <SiTypescript className="text-blue-600" /> },
+  { name: 'JavaScript', icon: <SiJavascript className="text-yellow-500" /> },
+  { name: 'Tailwind CSS', icon: <SiTailwindcss className="text-cyan-500" /> },
+  { name: 'Redux', icon: <SiRedux className="text-purple-600" /> },
+  { name: 'Node.js', icon: <FaNodeJs className="text-green-600" /> },
+  { name: 'Express.js', icon: <SiExpress /> },
+  { name: 'MongoDB', icon: <SiMongodb className="text-green-600" /> },
+  { name: 'Redis', icon: <SiRedis className="text-red-500" /> },
+  { name: 'PostgreSQL', icon: <SiPostgresql className="text-blue-700" /> },
+  { name: 'MySQL', icon: <SiMysql className="text-blue-500" /> },
+  { name: 'Git', icon: <FaGitAlt className="text-orange-500" /> },
+  { name: 'GitHub', icon: <FaGithub /> },
+  { name: 'Docker', icon: <FaDocker className="text-blue-500" /> },
 ];
 
 export default function Skills() {
   return (
-    <section
-      id="skills"
-      className="bg-white py-24 sm:py-28 lg:py-36"
-    >
+    <section id="skills" className="bg-white py-24 sm:py-28 lg:py-36">
       {/* Same container as Header & Hero */}
       <div className="mx-auto w-full px-6 sm:px-8 lg:px-10 xl:px-12">
         {/* Heading */}

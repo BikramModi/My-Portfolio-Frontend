@@ -6,19 +6,19 @@
 //   );
 // }
 
-"use client";
+'use client';
 
-import { useAuth } from "@/hooks/useAuth";
-import { useRouter } from "next/navigation";
+import { useAuth } from '@/hooks/useAuth';
+import { useRouter } from 'next/navigation';
 
 export default function Dashboard() {
   const { user, logout, loading } = useAuth();
   const router = useRouter();
 
-    const handleLogout = async () => {
+  const handleLogout = async () => {
     await logout();
 
-    router.replace("/");
+    router.replace('/');
     router.refresh();
   };
 
@@ -30,9 +30,7 @@ export default function Dashboard() {
     <>
       <h1>{user?.name}</h1>
 
-      <button onClick={handleLogout}>
-        Logout
-      </button>
+      <button onClick={handleLogout}>Logout</button>
     </>
   );
 }

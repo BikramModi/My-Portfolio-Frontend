@@ -3,7 +3,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
-import { loginUser} from '@/services/auth.service';
+import { loginUser } from '@/services/auth.service';
 import { ROUTES } from '@/constants/routes.constant';
 
 import { useAuth } from '@/hooks/useAuth';
@@ -16,8 +16,8 @@ export const useLogin = () => {
     mutationFn: loginUser,
 
     onSuccess: async () => {
-await refreshUser();
-      router.push(ROUTES.USER.DASHBOARD);    
+      await refreshUser();
+      router.push(ROUTES.USER.DASHBOARD);
     },
 
     onError: (error) => {

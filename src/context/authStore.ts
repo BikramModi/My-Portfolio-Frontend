@@ -1,8 +1,6 @@
 let logoutHandler: (() => Promise<void>) | null = null;
 
-export const setLogoutHandler = (
-  handler: () => Promise<void>
-) => {
+export const setLogoutHandler = (handler: () => Promise<void>) => {
   logoutHandler = handler;
 };
 

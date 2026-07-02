@@ -1,42 +1,34 @@
-"use client";
+'use client';
 
-import {
-  createContext,
-  useEffect,
-  useState,
-  ReactNode,
-} from "react";
+import { createContext, useEffect, useState, ReactNode } from 'react';
 
-import api from "@/lib/axios";
-import { API_ENDPOINTS } from "@/constants/api.constant";
-import { setLogoutHandler } from "./authStore";
+import api from '@/lib/axios';
+import { API_ENDPOINTS } from '@/constants/api.constant';
+import { setLogoutHandler } from './authStore';
 
 export interface User {
   _id: string;
   name: string;
   email: string;
-  role: "user" | "admin";
+  role: 'user' | 'admin';
   profileImage?: string;
 }
 
 interface AuthContextType {
   user: User | null;
-    refreshUser: () => Promise<void>;
+  refreshUser: () => Promise<void>;
   loading: boolean;
   login: (user: User) => void;
   logout: () => Promise<void>;
 }
 
-export const AuthContext =
-  createContext<AuthContextType | null>(null);
+export const AuthContext = createContext<AuthContextType | null>(null);
 
 interface AuthProviderProps {
   children: ReactNode;
 }
 
-export function AuthProvider({
-  children,
-}: AuthProviderProps) {
+export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
 
   const [loading, setLoading] = useState(true);
@@ -58,13 +50,13 @@ export function AuthProvider({
   }, []);
 
   const refreshUser = async () => {
-  try {
-    const { data } = await api.get(API_ENDPOINTS.AUTH.ME);
-    setUser(data.user);
-  } catch {
-    setUser(null);
-  }
-};
+    try {
+      const { data } = await api.get(API_ENDPOINTS.AUTH.ME);
+      setUser(data.user);
+    } catch {
+      setUser(null);
+    }
+  };
 
   const login = (userData: User) => {
     setUser(userData);

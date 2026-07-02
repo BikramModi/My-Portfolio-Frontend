@@ -21,10 +21,7 @@ export default function RegisterForm() {
     resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = ({
-    confirmPassword,
-    ...formData
-  }: RegisterFormData) => {
+  const onSubmit = ({ confirmPassword, ...formData }: RegisterFormData) => {
     registerMutation.mutate(formData);
   };
 
@@ -33,11 +30,7 @@ export default function RegisterForm() {
       <div>
         <label htmlFor="name">Name</label>
 
-        <input
-          id="name"
-          type="text"
-          {...register('name')}
-        />
+        <input id="name" type="text" {...register('name')} />
 
         {errors.name && <p>{errors.name.message}</p>}
       </div>
@@ -45,11 +38,7 @@ export default function RegisterForm() {
       <div>
         <label htmlFor="email">Email</label>
 
-        <input
-          id="email"
-          type="email"
-          {...register('email')}
-        />
+        <input id="email" type="email" {...register('email')} />
 
         {errors.email && <p>{errors.email.message}</p>}
       </div>
@@ -57,19 +46,13 @@ export default function RegisterForm() {
       <div>
         <label htmlFor="password">Password</label>
 
-        <input
-          id="password"
-          type="password"
-          {...register('password')}
-        />
+        <input id="password" type="password" {...register('password')} />
 
         {errors.password && <p>{errors.password.message}</p>}
       </div>
 
       <div>
-        <label htmlFor="confirmPassword">
-          Confirm Password
-        </label>
+        <label htmlFor="confirmPassword">Confirm Password</label>
 
         <input
           id="confirmPassword"
@@ -77,23 +60,14 @@ export default function RegisterForm() {
           {...register('confirmPassword')}
         />
 
-        {errors.confirmPassword && (
-          <p>{errors.confirmPassword.message}</p>
-        )}
+        {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
       </div>
 
-      <button
-        type="submit"
-        disabled={registerMutation.isPending}
-      >
-        {registerMutation.isPending
-          ? 'Registering...'
-          : 'Register'}
+      <button type="submit" disabled={registerMutation.isPending}>
+        {registerMutation.isPending ? 'Registering...' : 'Register'}
       </button>
 
-      {registerMutation.isError && (
-        <p>Registration failed.</p>
-      )}
+      {registerMutation.isError && <p>Registration failed.</p>}
     </form>
   );
 }
