@@ -10,6 +10,8 @@ import {
   GraduationCap,
 } from 'lucide-react';
 
+import { toast } from 'react-toastify';
+
 export default function About() {
   return (
     <section id="about" className="bg-white py-3">
@@ -82,8 +84,9 @@ export default function About() {
           </Link>
 
           <Link
-            href="/resume.pdf"
-            target="_blank"
+           href="/Bikram_Modi_MERN_Developer_Resume.pdf"
+                          download
+                          onClick={() => toast.success('Resume download started')}
             className="inline-flex items-center gap-2 rounded-xl border border-slate-300 px-6 py-3 font-semibold text-slate-700 transition hover:bg-slate-100"
           >
             <Download size={18} />

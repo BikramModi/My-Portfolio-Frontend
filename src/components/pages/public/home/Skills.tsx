@@ -22,6 +22,8 @@ import {
   SiRedux,
 } from 'react-icons/si';
 
+import { toast } from 'react-toastify';
+
 const skills = [
   { name: 'React', icon: <FaReact className="text-sky-500" /> },
   { name: 'Next.js', icon: <SiNextdotjs /> },
@@ -81,7 +83,8 @@ export default function Skills() {
         {/* CTA */}
         <div className="mt-20 text-center">
           <Link
-            href="/skills"
+            href="/"
+            onClick={() => toast.success('My Skills')}
             className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-8 py-4 font-semibold text-white transition hover:bg-blue-700"
           >
             View All Skills

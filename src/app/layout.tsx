@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { ToastContainer } from 'react-toastify';
 
 import './globals.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import AuthContextProvider from '@/providers/AuthContextProvider';
@@ -31,9 +33,23 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="">
+      <body>
         <ReactQueryProvider>
-          <AuthContextProvider>{children}</AuthContextProvider>
+          <AuthContextProvider>
+            {children}
+
+            <ToastContainer
+              position="bottom-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop
+              closeOnClick
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="colored"
+            />
+          </AuthContextProvider>
         </ReactQueryProvider>
       </body>
     </html>

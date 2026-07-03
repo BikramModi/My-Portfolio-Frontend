@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { ArrowUp, Mail } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaXTwitter } from 'react-icons/fa6';
 
+import { toast } from 'react-toastify';
+
 const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'Projects', href: '/projects' },
@@ -52,12 +54,12 @@ export default function Footer() {
 
             <div className="mb-6 flex items-center gap-3 text-gray-300">
               <Mail size={18} />
-              <span>you@example.com</span>
+              <span>bikrammodi132@gmail.com</span>
             </div>
 
             <div className="flex gap-4">
               <Link
-                href="https://github.com/yourusername"
+                href="https://github.com/BikramModi"
                 target="_blank"
                 className="rounded-full border border-gray-700 p-3 transition duration-300 hover:border-blue-500 hover:bg-blue-600"
               >
@@ -65,7 +67,7 @@ export default function Footer() {
               </Link>
 
               <Link
-                href="https://linkedin.com/in/yourusername"
+                href="https://linkedin.com/in/bikrammodi"
                 target="_blank"
                 className="rounded-full border border-gray-700 p-3 transition duration-300 hover:border-blue-500 hover:bg-blue-600"
               >
@@ -73,8 +75,8 @@ export default function Footer() {
               </Link>
 
               <Link
-                href="https://x.com/yourusername"
-                target="_blank"
+                href="/"
+                onClick={() => toast.info('Coming Soon!')}
                 className="rounded-full border border-gray-700 p-3 transition duration-300 hover:border-blue-500 hover:bg-blue-600"
               >
                 <FaXTwitter size={20} />
@@ -86,7 +88,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="mt-14 flex flex-col items-center justify-between gap-5 border-t border-gray-800 pt-8 md:flex-row">
           <p className="text-sm text-gray-500">
-            © {new Date().getFullYear()} Topher. All Rights Reserved.
+            © {new Date().getFullYear()} Bikram Modi. All Rights Reserved.
           </p>
 
           <button

@@ -1,1 +1,76 @@
 @import 'tailwindcss';
+
+/* ===========================================
+
+
+
+
+
+/* ===============================
+   Electric Border
+================================ */
+
+.lightning-ring {
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    #38bdf8 30deg,
+    transparent 70deg,
+    #60a5fa 120deg,
+    transparent 170deg,
+    #22d3ee 230deg,
+    transparent 280deg,
+    #3b82f6 330deg,
+    transparent 360deg
+  );
+
+  animation: rotateLightning 4s linear infinite;
+  filter: drop-shadow(0 0 12px #3b82f6) drop-shadow(0 0 24px #38bdf8)
+    drop-shadow(0 0 36px #22d3ee);
+}
+
+@keyframes rotateLightning {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.lightning-ring::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  background: inherit;
+  opacity: 0.6;
+  animation: lightningFlash 1.5s infinite;
+}
+
+@keyframes lightningFlash {
+  0%,
+  100% {
+    opacity: 0.25;
+    filter: blur(1px);
+  }
+
+  20% {
+    opacity: 1;
+    filter: blur(3px);
+  }
+
+  25% {
+    opacity: 0.2;
+  }
+
+  30% {
+    opacity: 1;
+    filter: blur(4px);
+  }
+
+  60% {
+    opacity: 0.3;
+  }
+}
