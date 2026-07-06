@@ -1,26 +1,22 @@
-import api from '@/lib/axios';
-import { API_ENDPOINTS } from '@/constants/api.constant';
-
-export interface CurrentUser {
-  _id: string;
-  name: string;
-  email: string;
-  role: 'user' | 'admin';
-  profileImage?: string;
-}
-
-export async function getCurrentUser(
-  cookie: string
-): Promise<CurrentUser | null> {
+export async function getCurrentUser(cookie: string) {
   try {
-    const response = await api.get(API_ENDPOINTS.AUTH.ME, {
-      headers: {
-        Cookie: cookie,
-      },
-    });
+    const res = await fetch(
+      `${process.env.INTERNAL_API_BASE_URL}/auth/me`,
+      {
+        headers: {
+          cookie,
+        },
+        cache: "no-store",
+      }
+    );
 
-    return response.data.user;
-  } catch {
+    if (!res.ok) return null;
+
+    const data = await res.json();
+
+    return data.user;
+  } catch (err) {
+    console.error(err);
     return null;
   }
 }
