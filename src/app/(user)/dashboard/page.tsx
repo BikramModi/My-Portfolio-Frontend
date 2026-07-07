@@ -28,7 +28,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <h1>{user?.name}</h1>
+      <h1>Welcome, {user?.name}</h1>
 
       <button onClick={handleLogout}>Logout</button>
     </>

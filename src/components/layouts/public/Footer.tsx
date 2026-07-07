@@ -58,29 +58,32 @@ export default function Footer() {
             </div>
 
             <div className="flex gap-4">
-              <Link
-                href="https://github.com/BikramModi"
-                target="_blank"
-                className="rounded-full border border-gray-700 p-3 transition duration-300 hover:border-blue-500 hover:bg-blue-600"
-              >
-                <FaGithub size={20} />
-              </Link>
+             <Link
+  href="https://github.com/BikramModi"
+  target="_blank"
+  aria-label="GitHub"
+  className="rounded-full border border-gray-700 p-3 transition duration-300 hover:border-blue-500 hover:bg-blue-600"
+>
+  <FaGithub size={20} />
+</Link>
 
-              <Link
-                href="https://linkedin.com/in/bikrammodi"
-                target="_blank"
-                className="rounded-full border border-gray-700 p-3 transition duration-300 hover:border-blue-500 hover:bg-blue-600"
-              >
-                <FaLinkedin size={20} />
-              </Link>
+<Link
+  href="https://linkedin.com/in/bikrammodi"
+  target="_blank"
+  aria-label="LinkedIn"
+  className="rounded-full border border-gray-700 p-3 transition duration-300 hover:border-blue-500 hover:bg-blue-600"
+>
+  <FaLinkedin size={20} />
+</Link>
 
-              <Link
-                href="/"
-                onClick={() => toast.info('Coming Soon!')}
-                className="rounded-full border border-gray-700 p-3 transition duration-300 hover:border-blue-500 hover:bg-blue-600"
-              >
-                <FaXTwitter size={20} />
-              </Link>
+<Link
+  href="/"
+  aria-label="X"
+  onClick={() => toast.info('Coming Soon!')}
+  className="rounded-full border border-gray-700 p-3 transition duration-300 hover:border-blue-500 hover:bg-blue-600"
+>
+  <FaXTwitter size={20} />
+</Link>
             </div>
           </div>
         </div>

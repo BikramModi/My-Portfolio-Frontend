@@ -4,7 +4,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
 import { loginSchema, LoginFormData } from '@/schemas/auth.schema';
-
 import { useLogin } from '@/hooks/useLogin';
 
 export default function LoginForm() {
@@ -25,22 +24,33 @@ export default function LoginForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <label>Email</label>
+        <label htmlFor="email">Email</label>
 
-        <input type="email" {...register('email')} />
+        <input
+          id="email"
+          type="email"
+          {...register('email')}
+        />
 
-        <p>{errors.email?.message}</p>
+        {errors.email && <p>{errors.email.message}</p>}
       </div>
 
       <div>
-        <label>Password</label>
+        <label htmlFor="password">Password</label>
 
-        <input type="password" {...register('password')} />
+        <input
+          id="password"
+          type="password"
+          {...register('password')}
+        />
 
-        <p>{errors.password?.message}</p>
+        {errors.password && <p>{errors.password.message}</p>}
       </div>
 
-      <button type="submit" disabled={loginMutation.isPending}>
+      <button
+        type="submit"
+        disabled={loginMutation.isPending}
+      >
         {loginMutation.isPending ? 'Logging in...' : 'Login'}
       </button>
 

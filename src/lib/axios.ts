@@ -21,7 +21,6 @@ const api: AxiosInstance = axios.create({
   },
 });
 
-console.log('API Base URL:', env.NEXT_PUBLIC_API_BASE_URL);
 
 api.interceptors.response.use(
   (response) => response,

@@ -10,9 +10,17 @@ services:
       - "3000:3000"
 
     volumes:
-      - .:/app
       - /app/node_modules
-      - /app/.next
+
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
+          ignore:
+            - node_modules/
+            - .next/
+            - .git/
 
     env_file:
       - .env.development
