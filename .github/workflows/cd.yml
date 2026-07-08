@@ -28,7 +28,7 @@ jobs:
           script: |
             echo "🚀 Frontend CI passed. Starting deployment..."
 
-            cd /app/frontend
+            cd /appfrontend
 
             echo "📥 Pulling latest frontend image..."
             docker compose pull
