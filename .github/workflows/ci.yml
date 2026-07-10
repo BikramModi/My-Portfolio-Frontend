@@ -105,7 +105,6 @@ jobs:
       - name: Build Docker Image
         run: |
           docker build \
-            --build-arg NEXT_PUBLIC_API_BASE_URL=${{ secrets.PRODUCTION_API_URL }} \
             -f Dockerfile.prod \
             -t ${{ secrets.DOCKER_USERNAME }}/portfolio-frontend:latest \
             -t ${{ secrets.DOCKER_USERNAME }}/portfolio-frontend:${{ github.sha }} \
