@@ -1,19 +1,12 @@
 name: Frontend CD Pipeline
 
 on:
-  workflow_run:
-    workflows:
-      - Frontend CI Pipeline
-
-    types:
-      - completed
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
-    if: >
-      github.event.workflow_run.conclusion == 'success' &&
-      github.event.workflow_run.head_branch == 'main'
-
     runs-on: ubuntu-latest
 
     steps:
@@ -26,17 +19,20 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
 
           script: |
-            echo "🚀 Frontend CI passed. Starting deployment..."
+            echo "🚀 Starting frontend deployment..."
 
-            cd /appfrontend
+            cd ~/appfrontend
 
             echo "📥 Pulling latest frontend image..."
             docker compose pull
 
             echo "🔄 Restarting frontend container..."
-            docker compose up -d
+            docker compose up -d --pull always
 
             echo "🧹 Cleaning old images..."
             docker image prune -f
+
+            echo "📦 Running containers:"
+            docker compose ps
 
             echo "✅ Frontend deployment completed successfully!"
