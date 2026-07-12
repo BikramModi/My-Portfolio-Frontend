@@ -7,30 +7,66 @@ import { FaGithub } from 'react-icons/fa';
 
 const projects = [
   {
-    title: 'Developer Portfolio',
+    title: 'WanderWise - Travel Planning Platform',
     description:
-      'Modern portfolio built with Next.js, TypeScript and Tailwind CSS.',
-    image: '/images/profile.jpg',
-    tech: ['Next.js', 'TypeScript', 'Tailwind'],
-    github: '#',
-    demo: '#',
+      'A full-stack travel planning platform that helps travelers discover destinations, generate personalized itineraries, manage travel budgets, explore hotels, and organize complete trips. Built with a modern scalable architecture using Next.js, Express, MongoDB, and AI integration.',
+    image: '/images/wanderwise.png',
+    tech: [
+      'Next.js',
+      'TypeScript',
+      'Node.js',
+      'Express',
+      'MongoDB',
+      'OpenAI',
+      'Tailwind CSS',
+      'Docker',
+    ],
+    github: {
+      frontend: 'https://github.com/myfirstapp111/Wander-Wise-Frontend1',
+      backend: 'https://github.com/myfirstapp111/Wander-Wise',
+    },
+    demo: 'https://wanderwisefront.netlify.app/',
   },
   {
-    title: 'MERN E-Commerce',
+    title: 'MERN E-Commerce Platform',
     description:
-      'Full-stack e-commerce application with authentication and Stripe.',
-    image: '/images/profile.jpg',
-    tech: ['React', 'Node.js', 'MongoDB'],
-    github: '#',
-    demo: '#',
+      'A production-ready full-stack e-commerce platform featuring secure authentication, Stripe payment integration, shopping cart, product catalog, order management, admin dashboard, and responsive user experience built with the MERN stack.',
+    image: '/images/eshop.png',
+    tech: [
+      'React',
+      'Node.js',
+      'Express',
+      'MongoDB',
+      'Stripe',
+      'JWT',
+      'Redux Toolkit',
+      'Cloudinary',
+    ],
+    github: {
+      frontend: 'https://github.com/BikramModi/E-ComFrontend',
+      backend: 'https://github.com/BikramModi/E-ComBackend',
+    },
+    demo: 'https://e-com-frontend-vert.vercel.app/',
   },
   {
-    title: 'Chat Application',
-    description: 'Real-time chat application using Socket.IO and MongoDB.',
-    image: '/images/profile.jpg',
-    tech: ['Socket.IO', 'Express', 'MongoDB'],
-    github: '#',
-    demo: '#',
+    title: 'AI ChatGPT Clone',
+    description:
+      'A ChatGPT-inspired AI assistant built with Next.js and Express featuring secure authentication, real-time conversations, markdown rendering, chat history, streaming AI responses, and a modern responsive interface powered by large language models.',
+    image: '/images/chatgpt.png',
+    tech: [
+      'Next.js',
+      'TypeScript',
+      'Express',
+      'MongoDB',
+      'OpenAI API',
+      'Tailwind CSS',
+      'JWT',
+    ],
+    github: {
+      frontend: 'https://github.com/BikramModi/ChatgptCloneFrontend',
+      backend: 'https://github.com/BikramModi/ChatgptClone',
+    },
+    demo: 'https://chatgpt-clone-frontend-murex.vercel.app/',
   },
 ];
 
@@ -62,6 +98,7 @@ export default function ProjectsPreview() {
               key={project.title}
               className="group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
             >
+              {/* Image */}
               <div className="relative aspect-video overflow-hidden">
                 <Image
                   src={project.image}
@@ -75,6 +112,7 @@ export default function ProjectsPreview() {
                 </div>
               </div>
 
+              {/* Content */}
               <div className="p-6">
                 <h3 className="text-2xl font-bold text-slate-900">
                   {project.title}
@@ -95,20 +133,32 @@ export default function ProjectsPreview() {
                   ))}
                 </div>
 
-                <div className="mt-6 flex gap-3">
+                {/* Buttons */}
+                <div className="mt-6 grid grid-cols-3 gap-2">
                   <Link
-                    href={project.github}
-                    className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-300 py-3 transition hover:border-blue-600 hover:text-blue-600"
+                    href={project.github.frontend}
+                    target="_blank"
+                    className="flex items-center justify-center gap-2 rounded-xl border border-slate-300 py-3 text-sm transition hover:border-blue-600 hover:text-blue-600"
                   >
                     <FaGithub />
-                    GitHub
+                    Frontend
+                  </Link>
+
+                  <Link
+                    href={project.github.backend}
+                    target="_blank"
+                    className="flex items-center justify-center gap-2 rounded-xl border border-slate-300 py-3 text-sm transition hover:border-blue-600 hover:text-blue-600"
+                  >
+                    <FaGithub />
+                    Backend
                   </Link>
 
                   <Link
                     href={project.demo}
-                    className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-blue-600 py-3 text-white transition hover:bg-blue-700"
+                    target="_blank"
+                    className="flex items-center justify-center gap-2 rounded-xl bg-blue-600 py-3 text-sm text-white transition hover:bg-blue-700"
                   >
-                    <ExternalLink size={18} />
+                    <ExternalLink size={16} />
                     Live
                   </Link>
                 </div>
