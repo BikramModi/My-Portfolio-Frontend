@@ -1,0 +1,20 @@
+import { MetadataRoute } from "next";
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+      },
+      {
+        userAgent: "Googlebot",
+        allow: "/",
+      },
+    ],
+
+    sitemap: "https://bikrammodi.com/sitemap.xml",
+
+    host: "https://bikrammodi.com",
+  };
+}
