@@ -2,75 +2,81 @@ import { Metadata } from "next";
 import { siteConfig } from "./site-config";
 
 export const defaultMetadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+    metadataBase: new URL(siteConfig.url),
 
-  title: {
-    default: siteConfig.title,
-    template: `%s | ${siteConfig.name}`,
-  },
-
-  description: siteConfig.description,
-
-  keywords: siteConfig.keywords,
-
-  authors: [
-    {
-      name: siteConfig.author,
-      url: siteConfig.url,
+    title: {
+        default: siteConfig.title,
+        template: `%s | ${siteConfig.name}`,
     },
-  ],
-
-  creator: siteConfig.author,
-
-  publisher: siteConfig.author,
-
-  alternates: {
-    canonical: siteConfig.url,
-  },
-
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
-
-  openGraph: {
-    title: siteConfig.title,
 
     description: siteConfig.description,
 
-    url: siteConfig.url,
+    icons: {
+        icon: "/images/profile.jpg",
+        shortcut: "/images/profile.jpg",
+        apple: "/images/profile.jpg",
+    },
 
-    siteName: siteConfig.name,
+    keywords: siteConfig.keywords,
 
-    locale: siteConfig.locale,
-
-    type: "website",
-
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-      },
+    authors: [
+        {
+            name: siteConfig.author,
+            url: siteConfig.url,
+        },
     ],
-  },
 
-  twitter: {
-    card: "summary_large_image",
+    creator: siteConfig.author,
 
-    title: siteConfig.title,
+    publisher: siteConfig.author,
 
-    description: siteConfig.description,
+    alternates: {
+        canonical: siteConfig.url,
+    },
 
-    creator: "@yourusername",
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+            "max-video-preview": -1,
+        },
+    },
 
-    images: [siteConfig.twitterImage],
-  },
+    openGraph: {
+        title: siteConfig.title,
+
+        description: siteConfig.description,
+
+        url: siteConfig.url,
+
+        siteName: siteConfig.name,
+
+        locale: siteConfig.locale,
+
+        type: "website",
+
+        images: [
+            {
+                url: siteConfig.ogImage,
+                width: 1200,
+                height: 630,
+            },
+        ],
+    },
+
+    twitter: {
+        card: "summary_large_image",
+
+        title: siteConfig.title,
+
+        description: siteConfig.description,
+
+        creator: "@yourusername",
+
+        images: [siteConfig.twitterImage],
+    },
 };
