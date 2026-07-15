@@ -67,14 +67,14 @@ export default function Hero() {
             <div>
               <h1
                 className="
-                  text-4xl
+                  text-3xl
                   font-black
                   leading-tight
-                  sm:text-5xl
-                  lg:text-6xl
+                  sm:text-3xl
+                  lg:text-4xl
                 "
               >
-                Full Stack
+                Bikram Modi
                 <span
                   className="
                     mt-2
