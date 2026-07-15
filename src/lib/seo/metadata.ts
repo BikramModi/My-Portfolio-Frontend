@@ -11,6 +11,21 @@ export const defaultMetadata: Metadata = {
 
     description: siteConfig.description,
 
+
+    applicationName: siteConfig.name,
+
+    generator: "Next.js",
+
+    category: "Technology",
+
+    referrer: "origin-when-cross-origin",
+
+    formatDetection: {
+        email: false,
+        address: false,
+        telephone: false,
+    },
+
     icons: {
         icon: "/images/profile.jpg",
         shortcut: "/images/profile.jpg",
@@ -53,7 +68,7 @@ export const defaultMetadata: Metadata = {
 
         url: siteConfig.url,
 
-        siteName: siteConfig.name,
+        siteName: "Bikram Modi",
 
         locale: siteConfig.locale,
 
