@@ -2,10 +2,10 @@ import { siteConfig } from "./site-config";
 
 export const personSchema = {
   "@context": "https://schema.org",
-
   "@type": "Person",
+  "@id": `${siteConfig.url}/#person`,
 
-  name: siteConfig.author,
+  name: "Bikram Modi",
 
   url: siteConfig.url,
 
@@ -19,16 +19,19 @@ export const personSchema = {
     siteConfig.github,
     siteConfig.linkedin,
   ],
+
+  worksFor: {
+    "@id": `${siteConfig.url}/#website`,
+  },
 };
 
 export const websiteSchema = {
   "@context": "https://schema.org",
-
   "@type": "WebSite",
-
-  name: siteConfig.name,
-
+  "@id": `${siteConfig.url}/#website`,
   url: siteConfig.url,
+  name: "Bikram Modi",
+  alternateName: "Bikram Modi Portfolio",
 };
 
 export const projectsSchema = {
@@ -37,4 +40,13 @@ export const projectsSchema = {
   name: "Portfolio Projects",
   description: "Software projects developed by Bikram Modi.",
   url: "https://bikrammodi.com/projects",
+};
+
+export const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteConfig.url}/#organization`,
+  name: "Bikram Modi",
+  url: siteConfig.url,
+  logo: `${siteConfig.url}${siteConfig.image}`,
 };
