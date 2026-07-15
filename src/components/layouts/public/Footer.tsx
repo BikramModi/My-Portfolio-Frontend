@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { ArrowUp, Mail } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaXTwitter } from 'react-icons/fa6';
-
 import { toast } from 'react-toastify';
 
 const navLinks = [
@@ -16,12 +15,14 @@ const navLinks = [
 export default function Footer() {
   return (
     <footer className="mt-20 border-t border-gray-200 bg-slate-950 text-white">
-      <div className="mx-auto w-full  px-6 py-14 sm:px-8 lg:px-10 xl:px-12">
+      <div className="mx-auto w-full px-6 py-14 sm:px-8 lg:px-10 xl:px-12">
         {/* Top Section */}
         <div className="grid gap-12 md:grid-cols-3">
           {/* Brand */}
           <div>
-            <h2 className="text-3xl font-bold tracking-tight">Bikram Modi</h2>
+            <p className="text-3xl font-bold tracking-tight">
+              Bikram Modi
+            </p>
 
             <p className="mt-5 max-w-sm text-sm leading-7 text-gray-400">
               Full Stack Developer passionate about building modern, scalable,
@@ -31,8 +32,10 @@ export default function Footer() {
           </div>
 
           {/* Navigation */}
-          <div>
-            <h3 className="mb-5 text-lg font-semibold">Quick Links</h3>
+          <nav aria-label="Footer navigation">
+            <h3 className="mb-5 text-lg font-semibold">
+              Quick Links
+            </h3>
 
             <ul className="space-y-3">
               {navLinks.map((link) => (
@@ -46,44 +49,54 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           {/* Contact & Social */}
           <div>
-            <h3 className="mb-5 text-lg font-semibold">Connect</h3>
+            <h3 className="mb-5 text-lg font-semibold">
+              Connect
+            </h3>
 
             <div className="mb-6 flex items-center gap-3 text-gray-300">
               <Mail size={18} />
-              <span>bikrammodi132@gmail.com</span>
+
+              <a
+                href="mailto:bikrammodi132@gmail.com"
+                className="transition hover:text-blue-400"
+              >
+                bikrammodi132@gmail.com
+              </a>
             </div>
 
             <div className="flex gap-4">
-             <Link
-  href="https://github.com/BikramModi"
-  target="_blank"
-  aria-label="GitHub"
-  className="rounded-full border border-gray-700 p-3 transition duration-300 hover:border-blue-500 hover:bg-blue-600"
->
-  <FaGithub size={20} />
-</Link>
+              <Link
+                href="https://github.com/BikramModi"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="rounded-full border border-gray-700 p-3 transition duration-300 hover:border-blue-500 hover:bg-blue-600"
+              >
+                <FaGithub size={20} />
+              </Link>
 
-<Link
-  href="https://linkedin.com/in/bikrammodi"
-  target="_blank"
-  aria-label="LinkedIn"
-  className="rounded-full border border-gray-700 p-3 transition duration-300 hover:border-blue-500 hover:bg-blue-600"
->
-  <FaLinkedin size={20} />
-</Link>
+              <Link
+                href="https://linkedin.com/in/bikrammodi"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="rounded-full border border-gray-700 p-3 transition duration-300 hover:border-blue-500 hover:bg-blue-600"
+              >
+                <FaLinkedin size={20} />
+              </Link>
 
-<Link
-  href="/"
-  aria-label="X"
-  onClick={() => toast.info('Coming Soon!')}
-  className="rounded-full border border-gray-700 p-3 transition duration-300 hover:border-blue-500 hover:bg-blue-600"
->
-  <FaXTwitter size={20} />
-</Link>
+              <button
+                type="button"
+                aria-label="X (Coming Soon)"
+                onClick={() => toast.info('Coming Soon!')}
+                className="rounded-full border border-gray-700 p-3 transition duration-300 hover:border-blue-500 hover:bg-blue-600"
+              >
+                <FaXTwitter size={20} />
+              </button>
             </div>
           </div>
         </div>
@@ -95,6 +108,7 @@ export default function Footer() {
           </p>
 
           <button
+            type="button"
             onClick={() =>
               window.scrollTo({
                 top: 0,
