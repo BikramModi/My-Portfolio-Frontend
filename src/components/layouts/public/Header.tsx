@@ -29,9 +29,9 @@ export default function Header() {
             </span>
 
             <div className="leading-none">
-              <h1 className="text-xl font-bold tracking-tight text-slate-900">
+              <span className="text-xl font-bold tracking-tight text-slate-900">
                 Bikram Modi
-              </h1>
+              </span>
 
               <p className="mt-1 text-[11px] uppercase tracking-[0.3em] text-gray-500">
                 Full Stack Developer
@@ -48,18 +48,16 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`relative text-sm font-semibold transition-colors duration-300 ${
-                    active
+                  className={`relative text-sm font-semibold transition-colors duration-300 ${active
                       ? 'text-blue-600'
                       : 'text-slate-700 hover:text-blue-600'
-                  }`}
+                    }`}
                 >
                   {item.name}
 
                   <span
-                    className={`absolute -bottom-2 left-0 h-0.5 rounded-full bg-blue-600 transition-all duration-300 ${
-                      active ? 'w-full' : 'w-0'
-                    }`}
+                    className={`absolute -bottom-2 left-0 h-0.5 rounded-full bg-blue-600 transition-all duration-300 ${active ? 'w-full' : 'w-0'
+                      }`}
                   />
                 </Link>
               );
@@ -101,11 +99,10 @@ export default function Header() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className={`block rounded-xl px-4 py-3 text-base font-medium transition ${
-                      active
+                    className={`block rounded-xl px-4 py-3 text-base font-medium transition ${active
                         ? 'bg-blue-50 text-blue-600'
                         : 'text-slate-700 hover:bg-gray-100'
-                    }`}
+                      }`}
                   >
                     {item.name}
                   </Link>
