@@ -1,3 +1,4 @@
+
 import { render, screen, fireEvent } from "@testing-library/react";
 import Footer from "./Footer";
 import { toast } from "react-toastify";
@@ -54,24 +55,36 @@ describe("Footer", () => {
   it("renders the email address", () => {
     render(<Footer />);
 
-    expect(
-      screen.getByText("bikrammodi132@gmail.com")
-    ).toBeInTheDocument();
+    const email = screen.getByRole("link", {
+      name: /bikrammodi132@gmail.com/i,
+    });
+
+    expect(email).toBeInTheDocument();
+    expect(email).toHaveAttribute(
+      "href",
+      "mailto:bikrammodi132@gmail.com"
+    );
   });
 
   it("renders all social media links", () => {
     render(<Footer />);
 
     expect(
-      screen.getByRole("link", { name: /github/i })
+      screen.getByRole("link", {
+        name: /github/i,
+      })
     ).toBeInTheDocument();
 
     expect(
-      screen.getByRole("link", { name: /linkedin/i })
+      screen.getByRole("link", {
+        name: /linkedin/i,
+      })
     ).toBeInTheDocument();
 
     expect(
-      screen.getByRole("link", { name: /^x$/i })
+      screen.getByRole("button", {
+        name: /x \(coming soon\)/i,
+      })
     ).toBeInTheDocument();
   });
 
@@ -85,12 +98,12 @@ describe("Footer", () => {
     ).toBeInTheDocument();
   });
 
-  it("shows toast when X link is clicked", () => {
+  it("shows toast when X button is clicked", () => {
     render(<Footer />);
 
     fireEvent.click(
-      screen.getByRole("link", {
-        name: /^x$/i,
+      screen.getByRole("button", {
+        name: /x \(coming soon\)/i,
       })
     );
 
@@ -114,3 +127,6 @@ describe("Footer", () => {
     });
   });
 });
+
+
+
