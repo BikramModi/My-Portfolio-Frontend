@@ -10,6 +10,8 @@ import AuthContextProvider from "@/providers/AuthContextProvider";
 
 import { defaultMetadata } from "@/lib/seo/metadata";
 
+import RegisterServiceWorker from "@/components/pwa/RegisterServiceWorker";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -37,6 +39,8 @@ export default function RootLayout({
         <ReactQueryProvider>
           <AuthContextProvider>
             {children}
+
+            <RegisterServiceWorker />
 
             <ToastContainer
               position="bottom-right"
