@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Script from "next/script";
+
 
 import { buildMetadata } from "@/lib/seo/buildMetadata";
-import { personSchema, websiteSchema } from "@/lib/seo/schema";
+
 
 import {
   Hero,
@@ -25,21 +25,9 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function HomePage() {
   return (
     <>
-      <Script
-        id="person-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(personSchema),
-        }}
-      />
+     
 
-      <Script
-        id="website-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(websiteSchema),
-        }}
-      />
+      
 
       <Hero />
 
