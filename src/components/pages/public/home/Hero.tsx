@@ -21,6 +21,10 @@ import {
 
 import { toast } from 'react-toastify';
 
+import InstallButton from '@/components/pwa/InstallButton'; 
+
+
+
 export default function Hero() {
   return (
     <section
@@ -177,6 +181,11 @@ export default function Hero() {
                 <Download size={18} />
                 Resume Download
               </Link>
+
+              <InstallButton />
+
+            
+
             </div>
 
             {/* Social Icons */}

@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
+
 const navItems = [
   { name: 'Home', href: '/' },
   { name: 'Projects', href: '/projects' },
@@ -49,8 +50,8 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   className={`relative text-sm font-semibold transition-colors duration-300 ${active
-                      ? 'text-blue-600'
-                      : 'text-slate-700 hover:text-blue-600'
+                    ? 'text-blue-600'
+                    : 'text-slate-700 hover:text-blue-600'
                     }`}
                 >
                   {item.name}
@@ -65,14 +66,17 @@ export default function Header() {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-4">
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
             >
-              Hire Me
+              Hire Me 
               <ArrowUpRight size={18} />
             </Link>
+
+            
+
           </div>
 
           {/* Mobile Menu Button */}
@@ -100,8 +104,8 @@ export default function Header() {
                     href={item.href}
                     onClick={() => setOpen(false)}
                     className={`block rounded-xl px-4 py-3 text-base font-medium transition ${active
-                        ? 'bg-blue-50 text-blue-600'
-                        : 'text-slate-700 hover:bg-gray-100'
+                      ? 'bg-blue-50 text-blue-600'
+                      : 'text-slate-700 hover:bg-gray-100'
                       }`}
                   >
                     {item.name}

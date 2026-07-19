@@ -12,6 +12,8 @@ import {
 
 import { toast } from 'react-toastify';
 
+
+
 export default function About() {
   return (
     <section id="about" className="bg-white py-3">
@@ -21,6 +23,7 @@ export default function About() {
           <div className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
             <UserRound size={16} />
             About Me
+          
           </div>
 
           <h2 className="mt-6 text-4xl font-bold text-slate-900 sm:text-5xl">
