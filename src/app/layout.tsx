@@ -13,6 +13,9 @@ import { defaultMetadata } from "@/lib/seo/metadata";
 import { personSchema, websiteSchema } from "@/lib/seo/schema";
 
 import RegisterServiceWorker from "@/components/pwa/RegisterServiceWorker";
+import OfflineBanner from "@/components/pwa/OfflineBanner";
+
+import NetworkStatusProvider from "@/components/pwa/NetworkStatusProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -57,6 +60,10 @@ export default function RootLayout({
 
         <ReactQueryProvider>
           <AuthContextProvider>
+
+            <OfflineBanner />
+            <NetworkStatusProvider />
+            
             {children}
 
             <RegisterServiceWorker />
