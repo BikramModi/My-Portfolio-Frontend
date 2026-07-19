@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 
@@ -9,6 +10,7 @@ import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import AuthContextProvider from "@/providers/AuthContextProvider";
 
 import { defaultMetadata } from "@/lib/seo/metadata";
+import { personSchema, websiteSchema } from "@/lib/seo/schema";
 
 import RegisterServiceWorker from "@/components/pwa/RegisterServiceWorker";
 
@@ -36,6 +38,23 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
+        {/* Global Structured Data */}
+        <Script
+          id="website-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
+          }}
+        />
+
+        <Script
+          id="person-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personSchema),
+          }}
+        />
+
         <ReactQueryProvider>
           <AuthContextProvider>
             {children}
