@@ -12,16 +12,11 @@ const STATIC_ASSETS = [
   // Offline page
   "/offline.html",
 
-  //Resume
+  // Resume
   "/Bikram_Modi_MERN_Developer_Resume.pdf",
 
   // Manifest
   "/manifest.webmanifest",
-
-  // Icons
-  "/favicon.ico",
-  "/icons/icon-192.png",
-  "/icons/icon-512.png",
 
   // Images
   "/images/profile.jpg",
@@ -31,9 +26,7 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
 
   event.waitUntil(
-    caches.open(STATIC_CACHE).then((cache) => {
-      return cache.addAll(STATIC_ASSETS);
-    })
+    caches.open(STATIC_CACHE).then((cache) => cache.addAll(STATIC_ASSETS))
   );
 });
 
@@ -41,7 +34,6 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     Promise.all([
       clients.claim(),
-
       caches.keys().then((keys) =>
         Promise.all(
           keys.map((key) => {
@@ -71,14 +63,11 @@ self.addEventListener("fetch", (event) => {
   ========================================
   CACHE FIRST
   ========================================
-
   Static assets
-
   */
 
   if (
     url.pathname.startsWith("/_next") ||
-    url.pathname.startsWith("/icons") ||
     request.destination === "image" ||
     request.destination === "font" ||
     request.destination === "style" ||
@@ -116,9 +105,7 @@ self.addEventListener("fetch", (event) => {
   ========================================
   NETWORK FIRST
   ========================================
-
   HTML navigation
-
   */
 
   if (request.mode === "navigate") {
@@ -127,7 +114,6 @@ self.addEventListener("fetch", (event) => {
         .then(async (response) => {
           if (response.ok) {
             const cache = await caches.open(PAGE_CACHE);
-
             cache.put(request, response.clone());
           }
 
@@ -151,7 +137,6 @@ self.addEventListener("fetch", (event) => {
   ========================================
   EVERYTHING ELSE
   ========================================
-
   */
 
   event.respondWith(
