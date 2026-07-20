@@ -1,22 +1,37 @@
-const CACHE_NAME = "portfolio-v1";
+const STATIC_CACHE = "static-v2";
+const PAGE_CACHE = "pages-v2";
+const IMAGE_CACHE = "images-v2";
 
 const STATIC_ASSETS = [
+  // Pages
   "/",
+  "/about",
+  "/projects",
+  "/contact",
+
+  // Offline page
   "/offline.html",
+
+  //Resume
+  "/Bikram_Modi_MERN_Developer_Resume.pdf",
+
+  // Manifest
   "/manifest.webmanifest",
 
+  // Icons
   "/favicon.ico",
-
   "/icons/icon-192.png",
-
   "/icons/icon-512.png",
+
+  // Images
+  "/images/profile.jpg",
 ];
 
 self.addEventListener("install", (event) => {
   self.skipWaiting();
 
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
+    caches.open(STATIC_CACHE).then((cache) => {
       return cache.addAll(STATIC_ASSETS);
     })
   );
@@ -27,15 +42,21 @@ self.addEventListener("activate", (event) => {
     Promise.all([
       clients.claim(),
 
-      caches.keys().then((keys) => {
-        return Promise.all(
+      caches.keys().then((keys) =>
+        Promise.all(
           keys.map((key) => {
-            if (key !== CACHE_NAME) {
+            if (
+              key !== STATIC_CACHE &&
+              key !== PAGE_CACHE &&
+              key !== IMAGE_CACHE
+            ) {
               return caches.delete(key);
             }
+
+            return Promise.resolve();
           })
-        );
-      }),
+        )
+      ),
     ])
   );
 });
@@ -44,21 +65,15 @@ self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
   const request = event.request;
-
   const url = new URL(request.url);
 
   /*
-      Cache First
+  ========================================
+  CACHE FIRST
+  ========================================
 
-      Images
+  Static assets
 
-      Fonts
-
-      JS
-
-      CSS
-
-      Icons
   */
 
   if (
@@ -70,19 +85,27 @@ self.addEventListener("fetch", (event) => {
     request.destination === "script"
   ) {
     event.respondWith(
-      caches.match(request).then((cached) => {
-        return (
-          cached ||
-          fetch(request).then((response) => {
-            const copy = response.clone();
+      caches.match(request).then(async (cachedResponse) => {
+        if (cachedResponse) {
+          return cachedResponse;
+        }
 
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(request, copy);
-            });
+        try {
+          const response = await fetch(request);
 
-            return response;
-          })
-        );
+          if (response.ok) {
+            const cache =
+              request.destination === "image"
+                ? await caches.open(IMAGE_CACHE)
+                : await caches.open(STATIC_CACHE);
+
+            cache.put(request, response.clone());
+          }
+
+          return response;
+        } catch {
+          return cachedResponse;
+        }
       })
     );
 
@@ -90,30 +113,56 @@ self.addEventListener("fetch", (event) => {
   }
 
   /*
-      Network First
+  ========================================
+  NETWORK FIRST
+  ========================================
 
-      HTML Pages
+  HTML navigation
+
   */
 
   if (request.mode === "navigate") {
     event.respondWith(
       fetch(request)
-        .then((response) => {
-          const copy = response.clone();
+        .then(async (response) => {
+          if (response.ok) {
+            const cache = await caches.open(PAGE_CACHE);
 
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(request, copy);
-          });
+            cache.put(request, response.clone());
+          }
 
           return response;
         })
         .catch(async () => {
-          const cached = await caches.match(request);
+          const cachedPage = await caches.match(request);
 
-          if (cached) return cached;
+          if (cachedPage) {
+            return cachedPage;
+          }
 
           return caches.match("/offline.html");
         })
     );
+
+    return;
   }
+
+  /*
+  ========================================
+  EVERYTHING ELSE
+  ========================================
+
+  */
+
+  event.respondWith(
+    fetch(request).catch(async () => {
+      const cached = await caches.match(request);
+
+      if (cached) {
+        return cached;
+      }
+
+      return Response.error();
+    })
+  );
 });
