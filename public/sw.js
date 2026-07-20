@@ -23,6 +23,36 @@ const STATIC_ASSETS = [
   "/images/profile.jpg",
 ];
 
+/*
+========================================
+CACHE LIMITS
+========================================
+*/
+
+const MAX_PAGE_ENTRIES = 20;
+const MAX_IMAGE_ENTRIES = 50;
+const MAX_API_ENTRIES = 30;
+
+/*
+========================================
+CACHE EXPIRATION
+========================================
+*/
+
+async function trimCache(cacheName, maxEntries) {
+  const cache = await caches.open(cacheName);
+
+  const keys = await cache.keys();
+
+  while (keys.length > maxEntries) {
+    const oldest = keys.shift();
+
+    if (oldest) {
+      await cache.delete(oldest);
+    }
+  }
+}
+
 self.addEventListener("install", (event) => {
   self.skipWaiting();
 
@@ -35,6 +65,7 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     Promise.all([
       clients.claim(),
+
       caches.keys().then((keys) =>
         Promise.all(
           keys.map((key) => {
@@ -90,7 +121,11 @@ self.addEventListener("fetch", (event) => {
                 ? await caches.open(IMAGE_CACHE)
                 : await caches.open(STATIC_CACHE);
 
-            cache.put(request, response.clone());
+            await cache.put(request, response.clone());
+
+            if (request.destination === "image") {
+              await trimCache(IMAGE_CACHE, MAX_IMAGE_ENTRIES);
+            }
           }
 
           return response;
@@ -116,7 +151,10 @@ self.addEventListener("fetch", (event) => {
         .then(async (response) => {
           if (response.ok) {
             const cache = await caches.open(PAGE_CACHE);
-            cache.put(request, response.clone());
+
+            await cache.put(request, response.clone());
+
+            await trimCache(PAGE_CACHE, MAX_PAGE_ENTRIES);
           }
 
           return response;
@@ -135,14 +173,12 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-
-
   /*
-========================================
-NETWORK FIRST
-API Requests
-========================================
-*/
+  ========================================
+  NETWORK FIRST
+  API Requests
+  ========================================
+  */
 
   if (
     url.origin === "https://api.bikrammodi.com" &&
@@ -155,7 +191,9 @@ API Requests
           if (response.ok) {
             const cache = await caches.open(API_CACHE);
 
-            cache.put(request, response.clone());
+            await cache.put(request, response.clone());
+
+            await trimCache(API_CACHE, MAX_API_ENTRIES);
           }
 
           return response;
@@ -183,7 +221,6 @@ API Requests
 
     return;
   }
-
 
   /*
   ========================================
