@@ -1,6 +1,7 @@
 const STATIC_CACHE = "static-v2";
 const PAGE_CACHE = "pages-v2";
 const IMAGE_CACHE = "images-v2";
+const API_CACHE = "api-v1";
 
 const STATIC_ASSETS = [
   // Pages
@@ -40,7 +41,8 @@ self.addEventListener("activate", (event) => {
             if (
               key !== STATIC_CACHE &&
               key !== PAGE_CACHE &&
-              key !== IMAGE_CACHE
+              key !== IMAGE_CACHE &&
+              key !== API_CACHE
             ) {
               return caches.delete(key);
             }
@@ -132,6 +134,56 @@ self.addEventListener("fetch", (event) => {
 
     return;
   }
+
+
+
+  /*
+========================================
+NETWORK FIRST
+API Requests
+========================================
+*/
+
+  if (
+    url.origin === "https://api.bikrammodi.com" &&
+    request.method === "GET" &&
+    !url.pathname.startsWith("/auth")
+  ) {
+    event.respondWith(
+      fetch(request)
+        .then(async (response) => {
+          if (response.ok) {
+            const cache = await caches.open(API_CACHE);
+
+            cache.put(request, response.clone());
+          }
+
+          return response;
+        })
+        .catch(async () => {
+          const cached = await caches.match(request);
+
+          if (cached) {
+            return cached;
+          }
+
+          return new Response(
+            JSON.stringify({
+              message: "Offline",
+            }),
+            {
+              status: 503,
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+        })
+    );
+
+    return;
+  }
+
 
   /*
   ========================================
