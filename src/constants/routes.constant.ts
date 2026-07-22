@@ -3,6 +3,7 @@ export const ROUTES = {
   LOGIN: '/login',
   REGISTER: '/register',
   TEST: '/test',
+  AI: '/gen-ai',
 
   USER: {
     DASHBOARD: '/dashboard',
