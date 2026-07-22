@@ -6,4 +6,11 @@ export const API_ENDPOINTS = {
     REFRESH: '/auth/refresh',
     ME: '/auth/me',
   },
+
+  AI: {
+    HEALTH: '/api/health',
+    MODELS: '/ai/models',
+    CHAT: '/ai/chat',
+  },
+  
 } as const;

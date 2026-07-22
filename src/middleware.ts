@@ -21,6 +21,7 @@ export async function middleware(request: NextRequest) {
     "/about",
     "/projects",
     "/contact",
+    "/gen-ai",
   ];
 
   const isPublic = publicRoutes.includes(pathname);
