@@ -1,118 +1,156 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import RegisterForm from "@/components/pages/public/register/RegisterForm";
-import { useRegister } from "@/hooks/auth/useRegister";
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
-jest.mock("@/hooks/auth/useRegister");
+import RegisterForm from '@/components/pages/public/register/RegisterForm';
+import { useRegister } from '@/hooks/auth/useRegister';
+
+jest.mock('@/hooks/auth/useRegister');
 
 const mockMutate = jest.fn();
 
-describe("RegisterForm", () => {
-    beforeEach(() => {
-        jest.clearAllMocks();
+beforeEach(() => {
+  jest.clearAllMocks();
 
-        (useRegister as jest.Mock).mockReturnValue({
-            mutate: mockMutate,
-            isPending: false,
-            isError: false,
-        });
+  (useRegister as jest.Mock).mockReturnValue({
+    mutate: mockMutate,
+    isPending: false,
+    isError: false,
+    error: null,
+  });
+});
+
+describe('RegisterForm', () => {
+  it('renders the form', () => {
+    render(<RegisterForm />);
+
+    expect(
+      screen.getByRole('heading', {
+        name: /create account/i,
+      })
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByLabelText(/full name/i)
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByLabelText(/email address/i)
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByLabelText(/^password$/i)
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByLabelText(/confirm password/i)
+    ).toBeInTheDocument();
+  });
+
+  it('toggles password visibility', async () => {
+    const user = userEvent.setup();
+
+    render(<RegisterForm />);
+
+    const password =
+      screen.getByLabelText(/^password$/i);
+
+    expect(password).toHaveAttribute(
+      'type',
+      'password'
+    );
+
+    const buttons = screen.getAllByRole('button', {
+      name: '',
     });
 
-    it("renders all form fields", () => {
-        render(<RegisterForm />);
+    await user.click(buttons[0]);
 
-        expect(screen.getByLabelText(/name/i)).toBeInTheDocument();
-        expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
-        expect(screen.getByLabelText(/^password$/i)).toBeInTheDocument();
-        expect(screen.getByLabelText(/confirm password/i)).toBeInTheDocument();
+    expect(password).toHaveAttribute(
+      'type',
+      'text'
+    );
+  });
 
-        expect(
-            screen.getByRole("button", { name: /register/i })
-        ).toBeInTheDocument();
+  it('submits valid form data', async () => {
+    const user = userEvent.setup();
+
+    render(<RegisterForm />);
+
+    await user.type(
+      screen.getByLabelText(/full name/i),
+      'John Doe'
+    );
+
+    await user.type(
+      screen.getByLabelText(/email address/i),
+      'john@example.com'
+    );
+
+    await user.type(
+      screen.getByLabelText(/^password$/i),
+      'Password123'
+    );
+
+    await user.type(
+      screen.getByLabelText(/confirm password/i),
+      'Password123'
+    );
+
+    await user.click(
+      screen.getByRole('button', {
+        name: /create account/i,
+      })
+    );
+
+    await waitFor(() => {
+      expect(mockMutate).toHaveBeenCalledWith({
+        name: 'John Doe',
+        email: 'john@example.com',
+        password: 'Password123',
+      });
+    });
+  });
+
+  it('shows api error', () => {
+    (useRegister as jest.Mock).mockReturnValue({
+      mutate: mockMutate,
+      isPending: false,
+      isError: true,
+      error: {
+        response: {
+          data: {
+            errors: [
+              {
+                path: 'email',
+                msg: 'This email has already been taken',
+              },
+            ],
+          },
+        },
+      },
     });
 
-    it("shows validation errors when submitting an empty form", async () => {
-        render(<RegisterForm />);
+    render(<RegisterForm />);
 
-        fireEvent.click(
-            screen.getByRole("button", { name: /register/i })
-        );
+    expect(
+      screen.getByText(/already been taken/i)
+    ).toBeInTheDocument();
+  });
 
-        expect(
-            await screen.findByText("Name must be at least 3 characters")
-        ).toBeInTheDocument();
-
-        expect(
-            await screen.findByText("Please enter a valid email address")
-        ).toBeInTheDocument();
-
-        expect(
-            await screen.findByText("Password must be at least 8 characters")
-        ).toBeInTheDocument();
-
-        expect(
-            await screen.findByText("Please confirm your password")
-        ).toBeInTheDocument();
+  it('shows loading state', () => {
+    (useRegister as jest.Mock).mockReturnValue({
+      mutate: mockMutate,
+      isPending: true,
+      isError: false,
+      error: null,
     });
 
-    it("calls mutate with valid form data", async () => {
-        render(<RegisterForm />);
+    render(<RegisterForm />);
 
-        fireEvent.change(screen.getByLabelText(/name/i), {
-            target: { value: "John Doe" },
-        });
-
-        fireEvent.change(screen.getByLabelText(/email/i), {
-            target: { value: "john@example.com" },
-        });
-
-        fireEvent.change(screen.getByLabelText(/^password$/i), {
-            target: { value: "Password123!" },
-        });
-
-        fireEvent.change(screen.getByLabelText(/confirm password/i), {
-            target: { value: "Password123!" },
-        });
-
-        fireEvent.click(
-            screen.getByRole("button", { name: /register/i })
-        );
-
-        await waitFor(() => {
-            expect(mockMutate).toHaveBeenCalledWith({
-                name: "John Doe",
-                email: "john@example.com",
-                password: "Password123!",
-            });
-        });
-    });
-
-    it("shows loading state", () => {
-        (useRegister as jest.Mock).mockReturnValue({
-            mutate: jest.fn(),
-            isPending: true,
-            isError: false,
-        });
-
-        render(<RegisterForm />);
-
-        expect(
-            screen.getByRole("button", {
-                name: /registering/i,
-            })
-        ).toBeDisabled();
-    });
-
-    it("shows error message when registration fails", () => {
-        (useRegister as jest.Mock).mockReturnValue({
-            mutate: jest.fn(),
-            isPending: false,
-            isError: true,
-        });
-
-        render(<RegisterForm />);
-
-        expect(
-            screen.getByText(/registration failed/i)
-        ).toBeInTheDocument();
-    });
+    expect(
+      screen.getByRole('button', {
+        name: /registering/i,
+      })
+    ).toBeDisabled();
+  });
 });

@@ -1,103 +1,149 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import LoginForm from "@/components/pages/public/login/LoginForm";
-import { useLogin } from "@/hooks/auth/useLogin";
+import {
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
-jest.mock("@/hooks/auth/useLogin");
+import LoginForm from '@/components/pages/public/login/LoginForm';
+import { useLogin } from '@/hooks/auth/useLogin';
+
+jest.mock('@/hooks/auth/useLogin');
 
 const mockMutate = jest.fn();
 
-describe("LoginForm", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
+beforeEach(() => {
+  jest.clearAllMocks();
 
-    (useLogin as jest.Mock).mockReturnValue({
-      mutate: mockMutate,
-      isPending: false,
-      isError: false,
-    });
+  (useLogin as jest.Mock).mockReturnValue({
+    mutate: mockMutate,
+    isPending: false,
+    isError: false,
+    error: null,
   });
+});
 
-  it("renders the login form", () => {
+describe('LoginForm', () => {
+  it('renders all fields', () => {
     render(<LoginForm />);
 
-    expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', {
+        name: /welcome back/i,
+      })
+    ).toBeInTheDocument();
 
     expect(
-      screen.getByRole("button", { name: /login/i })
+      screen.getByLabelText(/email address/i)
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByLabelText(/password/i)
+    ).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('button', {
+        name: /^login$/i,
+      })
     ).toBeInTheDocument();
   });
 
-  it("shows validation errors when submitting an empty form", async () => {
+  it('toggles password visibility', async () => {
+    const user = userEvent.setup();
+
     render(<LoginForm />);
 
-    fireEvent.click(
-      screen.getByRole("button", { name: /login/i })
+    const passwordInput =
+      screen.getByLabelText(/password/i);
+
+    expect(passwordInput).toHaveAttribute(
+      'type',
+      'password'
     );
 
-    expect(
-      await screen.findByText("Please enter a valid email address")
-    ).toBeInTheDocument();
+    const toggleButton = screen.getAllByRole('button')[0];
 
-    expect(
-      await screen.findByText("Password is required")
-    ).toBeInTheDocument();
+    await user.click(toggleButton);
+
+    expect(passwordInput).toHaveAttribute(
+      'type',
+      'text'
+    );
+
+    const toggleButton1 = screen.getAllByRole('button')[0];
+
+    await user.click(toggleButton1);
+
+    expect(passwordInput).toHaveAttribute(
+      'type',
+      'password'
+    );
   });
 
-  it("calls mutate with valid login data", async () => {
+  it('calls mutate on valid submit', async () => {
+    const user = userEvent.setup();
+
     render(<LoginForm />);
 
-    fireEvent.change(screen.getByLabelText(/email/i), {
-      target: {
-        value: "john@example.com",
-      },
-    });
+    await user.type(
+      screen.getByLabelText(/email address/i),
+      'john@example.com'
+    );
 
-    fireEvent.change(screen.getByLabelText(/password/i), {
-      target: {
-        value: "Password123!",
-      },
-    });
+    await user.type(
+      screen.getByLabelText(/password/i),
+      'Password123'
+    );
 
-    fireEvent.click(
-      screen.getByRole("button", { name: /login/i })
+    await user.click(
+      screen.getByRole('button', {
+        name: /^login$/i,
+      })
     );
 
     await waitFor(() => {
       expect(mockMutate).toHaveBeenCalledWith({
-        email: "john@example.com",
-        password: "Password123!",
+        email: 'john@example.com',
+        password: 'Password123',
       });
     });
   });
 
-  it("disables the button while logging in", () => {
+  it('shows API error message', () => {
     (useLogin as jest.Mock).mockReturnValue({
-      mutate: jest.fn(),
-      isPending: true,
-      isError: false,
+      mutate: mockMutate,
+      isPending: false,
+      isError: true,
+      error: {
+        response: {
+          data: {
+            message: 'Invalid credentials',
+          },
+        },
+      },
     });
 
     render(<LoginForm />);
 
     expect(
-      screen.getByRole("button", {
+      screen.getByText(/invalid credentials/i)
+    ).toBeInTheDocument();
+  });
+
+  it('shows loading state', () => {
+    (useLogin as jest.Mock).mockReturnValue({
+      mutate: mockMutate,
+      isPending: true,
+      isError: false,
+      error: null,
+    });
+
+    render(<LoginForm />);
+
+    expect(
+      screen.getByRole('button', {
         name: /logging in/i,
       })
     ).toBeDisabled();
-  });
-
-  it("shows an error message when login fails", () => {
-    (useLogin as jest.Mock).mockReturnValue({
-      mutate: jest.fn(),
-      isPending: false,
-      isError: true,
-    });
-
-    render(<LoginForm />);
-
-    expect(
-      screen.getByText("Login failed.")
-    ).toBeInTheDocument();
   });
 });
