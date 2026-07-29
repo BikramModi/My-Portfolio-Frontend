@@ -1,8 +1,8 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import LoginForm from "./LoginForm";
-import { useLogin } from "@/hooks/useLogin";
+import LoginForm from "@/components/pages/public/login/LoginForm";
+import { useLogin } from "@/hooks/auth/useLogin";
 
-jest.mock("@/hooks/useLogin");
+jest.mock("@/hooks/auth/useLogin");
 
 const mockMutate = jest.fn();
 

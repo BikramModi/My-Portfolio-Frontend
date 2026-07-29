@@ -8,7 +8,7 @@ import {
   RegisterFormData,
 } from '../../../../schemas/auth.schema';
 
-import { useRegister } from '../../../../hooks/useRegister';
+import { useRegister } from '../../../../hooks/auth/useRegister';
 
 export default function RegisterForm() {
   const registerMutation = useRegister();
