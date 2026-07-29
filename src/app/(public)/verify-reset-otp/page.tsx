@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 import VerifyResetOTPForm from '@/components/pages/public/verify-reset-otp/VerifyResetOTPForm';
 
 export default function VerifyResetOTPPage() {
@@ -5,7 +7,9 @@ export default function VerifyResetOTPPage() {
     <main>
       <h1>Verify Password Reset</h1>
 
-      <VerifyResetOTPForm />
+      <Suspense fallback={<p>Loading...</p>}>
+        <VerifyResetOTPForm />
+      </Suspense>
     </main>
   );
 }

@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 import VerifyEmailForm from '@/components/pages/public/verify-email/VerifyEmailForm';
 
 export default function VerifyEmailPage() {
@@ -5,7 +7,9 @@ export default function VerifyEmailPage() {
     <main>
       <h1>Verify Email</h1>
 
-      <VerifyEmailForm />
+      <Suspense fallback={<p>Loading...</p>}>
+        <VerifyEmailForm />
+      </Suspense>
     </main>
   );
 }
