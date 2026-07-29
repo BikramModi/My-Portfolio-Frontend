@@ -3,21 +3,21 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
-import { registerUser } from '@/services/auth.service';
+import { resetPassword } from '@/services/auth.service';
 import { ROUTES } from '@/constants/routes.constant';
 
-export const useRegister = () => {
+export const useResetPassword = () => {
   const router = useRouter();
 
   return useMutation({
-    mutationFn: registerUser,
+    mutationFn: resetPassword,
 
     onSuccess: () => {
       router.push(ROUTES.LOGIN);
     },
 
     onError: (error) => {
-      console.error('Registration failed', error);
+      console.error('Password reset failed', error);
     },
   });
 };
