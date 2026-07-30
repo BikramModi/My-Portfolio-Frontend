@@ -5,7 +5,6 @@ import ResetPasswordForm from '@/components/pages/public/reset-password/ResetPas
 export default function ResetPasswordPage() {
   return (
     <main>
-      <h1>Reset Password</h1>
 
       <Suspense fallback={<p>Loading...</p>}>
         <ResetPasswordForm />

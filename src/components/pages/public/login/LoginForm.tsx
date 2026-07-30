@@ -19,6 +19,8 @@ import {
 
 import { useLogin } from '@/hooks/auth/useLogin';
 
+import Link from 'next/link';
+
 type LoginErrorResponse = {
   success: boolean;
   message: string;
@@ -132,6 +134,16 @@ export default function LoginForm() {
               {errors.password.message}
             </p>
           )}
+        </div>
+
+        {/* Forgot Password */}
+        <div className="flex justify-end">
+          <Link
+            href="/forgot-password"
+            className="text-sm font-medium text-blue-600 transition-colors hover:text-blue-700 hover:underline"
+          >
+            Forgot password?
+          </Link>
         </div>
 
         {/* API Error */}
