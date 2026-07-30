@@ -5,7 +5,7 @@ import VerifyResetOTPForm from '@/components/pages/public/verify-reset-otp/Verif
 export default function VerifyResetOTPPage() {
   return (
     <main>
-      <h1>Verify Password Reset</h1>
+      
 
       <Suspense fallback={<p>Loading...</p>}>
         <VerifyResetOTPForm />
