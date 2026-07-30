@@ -1,10 +1,17 @@
 'use client';
 
+import { AxiosError } from 'axios';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 import { registerUser } from '@/services/auth.service';
 import { ROUTES } from '@/constants/routes.constant';
+
+type ErrorResponse = {
+  success: boolean;
+  message: string;
+};
 
 export const useRegister = () => {
   const router = useRouter();
@@ -13,13 +20,24 @@ export const useRegister = () => {
     mutationFn: registerUser,
 
     onSuccess: (_, variables) => {
-  router.push(
-    `${ROUTES.VERIFY_EMAIL}?email=${encodeURIComponent(variables.email)}`
-  );
-},
+      toast.success(
+        'Verification code sent to your email.'
+      );
 
-    onError: (error) => {
-      console.error('Registration failed', error);
+      router.push(
+        `${ROUTES.VERIFY_EMAIL}?email=${encodeURIComponent(
+          variables.email
+        )}`
+      );
+    },
+
+    onError: (
+      error: AxiosError<ErrorResponse>
+    ) => {
+      toast.error(
+        error.response?.data.message ??
+          'Registration failed.'
+      );
     },
   });
 };
