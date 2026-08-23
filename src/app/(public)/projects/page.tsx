@@ -4,6 +4,8 @@ import Script from "next/script";
 import { buildMetadata } from "@/lib/seo/buildMetadata";
 import { projectsSchema } from "@/lib/seo/schema";
 
+import ProjectsPageContent from "@/components/pages/public/projects/ProjectsPage";
+
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
     title: "Projects",
@@ -25,7 +27,9 @@ export default function ProjectsPage() {
       />
 
       <div>
-        <h1>Projects</h1>
+  
+        <ProjectsPageContent />
+       
       </div>
     </>
   );
