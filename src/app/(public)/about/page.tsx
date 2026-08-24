@@ -4,6 +4,8 @@ import Script from "next/script";
 import { buildMetadata } from "@/lib/seo/buildMetadata";
 import { personSchema } from "@/lib/seo/schema";
 
+import AboutPageContent from "@/components/pages/public/about/AboutPage";
+
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
     title: "About",
@@ -25,7 +27,10 @@ export default function AboutPage() {
       />
 
       <div>
-        <h1>About</h1>
+        
+
+        <AboutPageContent />
+
       </div>
     </>
   );
