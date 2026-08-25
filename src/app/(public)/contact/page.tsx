@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import { buildMetadata } from "@/lib/seo/buildMetadata";
 
+import ContactPageContent from "@/components/pages/public/contact/ContactPage";
+
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({
     title: "Contact",
@@ -14,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function ContactPage() {
   return (
     <div>
-      <h1>Contact</h1>
+      <ContactPageContent />
     </div>
   );
 }
