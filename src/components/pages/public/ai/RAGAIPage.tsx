@@ -1,6 +1,10 @@
-'use client';
+import {
+  Brain,
+  Database,
+  Search,
+} from 'lucide-react';
 
-import { Brain, Database, Search } from 'lucide-react';
+import AIChatShell from './shared/AIChatShell';
 
 export default function RAGAIPage() {
   return (
@@ -23,61 +27,50 @@ export default function RAGAIPage() {
         </div>
 
         <div className="mx-auto mt-12 w-full max-w-4xl">
-          <div className="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-xl shadow-slate-900/5">
-            <div className="border-b border-gray-100 px-6 py-5 sm:px-8">
-              <h2 className="text-lg font-bold text-slate-900">
-                Portfolio Knowledge
-              </h2>
+          <AIChatShell
+            title="Portfolio Knowledge Assistant"
+            description="Ask questions grounded in portfolio knowledge."
+            placeholder="Ask about projects, skills, experience..."
+            emptyTitle="Explore portfolio knowledge"
+            emptyDescription="Ask a question about my projects, skills, experience, or technical background."
+          />
+        </div>
 
-              <p className="mt-1 text-sm text-slate-500">
-                Retrieval-augmented AI workspace
-              </p>
-            </div>
+        <div className="mx-auto mt-6 grid w-full max-w-4xl gap-4 sm:grid-cols-3">
+          <div className="rounded-2xl border border-gray-200 bg-white p-5">
+            <Database className="text-violet-600" size={21} />
 
-            <div className="grid gap-4 p-6 sm:grid-cols-3 sm:p-8">
-              <div className="rounded-2xl border border-gray-100 bg-slate-50 p-5">
-                <Database className="text-violet-600" size={22} />
+            <h3 className="mt-4 text-sm font-bold text-slate-900">
+              Knowledge Base
+            </h3>
 
-                <h3 className="mt-4 font-semibold text-slate-900">
-                  Knowledge Base
-                </h3>
+            <p className="mt-2 text-xs leading-5 text-slate-500">
+              Portfolio information available for retrieval.
+            </p>
+          </div>
 
-                <p className="mt-2 text-sm leading-6 text-slate-500">
-                  Portfolio information prepared for retrieval.
-                </p>
-              </div>
+          <div className="rounded-2xl border border-gray-200 bg-white p-5">
+            <Search className="text-violet-600" size={21} />
 
-              <div className="rounded-2xl border border-gray-100 bg-slate-50 p-5">
-                <Search className="text-violet-600" size={22} />
+            <h3 className="mt-4 text-sm font-bold text-slate-900">
+              Semantic Retrieval
+            </h3>
 
-                <h3 className="mt-4 font-semibold text-slate-900">
-                  Retrieval
-                </h3>
+            <p className="mt-2 text-xs leading-5 text-slate-500">
+              Relevant information will be retrieved for each query.
+            </p>
+          </div>
 
-                <p className="mt-2 text-sm leading-6 text-slate-500">
-                  Relevant knowledge will be retrieved for each question.
-                </p>
-              </div>
+          <div className="rounded-2xl border border-gray-200 bg-white p-5">
+            <Brain className="text-violet-600" size={21} />
 
-              <div className="rounded-2xl border border-gray-100 bg-slate-50 p-5">
-                <Brain className="text-violet-600" size={22} />
+            <h3 className="mt-4 text-sm font-bold text-slate-900">
+              Grounded Response
+            </h3>
 
-                <h3 className="mt-4 font-semibold text-slate-900">
-                  Grounded Answer
-                </h3>
-
-                <p className="mt-2 text-sm leading-6 text-slate-500">
-                  Responses will be generated using retrieved context.
-                </p>
-              </div>
-            </div>
-
-            <div className="mx-6 mb-6 rounded-2xl border border-dashed border-gray-200 bg-gray-50 p-8 text-center sm:mx-8 sm:mb-8">
-              <p className="text-sm font-semibold text-slate-600">
-                RAG conversation interface will be implemented in a later
-                module.
-              </p>
-            </div>
+            <p className="mt-2 text-xs leading-5 text-slate-500">
+              Responses will use retrieved portfolio context.
+            </p>
           </div>
         </div>
       </section>
