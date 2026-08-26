@@ -1,21 +1,13 @@
-import ChatLayout from '@/components/pages/public/ai/ChatLayout';
+import type { Metadata } from 'next';
 
-export default function AIPage() {
-  return (
-    <main className="mx-auto min-h-screen max-w-6xl px-6 py-12">
+import GenAIPage from '@/components/pages/public/ai/GenAIPage';
 
-      <div className="mb-10">
-        <h1 className="text-4xl font-bold">
-          AI Playground
-        </h1>
+export const metadata: Metadata = {
+  title: 'Gen AI | Bikram Modi',
+  description:
+    'Explore the Generative AI capabilities of Bikram Modi’s AI portfolio.',
+};
 
-        <p className="mt-2 text-slate-600">
-          Interact with locally hosted Ollama models.
-        </p>
-      </div>
-
-      <ChatLayout />
-
-    </main>
-  );
+export default function GenAIRoute() {
+  return <GenAIPage />;
 }

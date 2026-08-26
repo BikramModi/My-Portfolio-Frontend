@@ -25,7 +25,11 @@ export async function middleware(request: NextRequest) {
     "/about",
     "/projects",
     "/contact",
+    "/ollama-ai",
     "/gen-ai",
+    "/rag-ai",
+    "/agentic-ai",
+  
   ];
 
   const isPublic = publicRoutes.includes(pathname);
