@@ -1,11 +1,11 @@
-'use client';
-
 import {
   Bot,
   Brain,
   GitBranch,
   Wrench,
 } from 'lucide-react';
+
+import AIChatShell from './shared/AIChatShell';
 
 const agentSteps = [
   {
@@ -50,34 +50,17 @@ export default function AgenticAIPage() {
           </p>
         </div>
 
+        {/* Agent Pipeline */}
         <div className="mx-auto mt-12 w-full max-w-5xl">
-          <div className="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-xl shadow-slate-900/5">
-            <div className="border-b border-gray-100 px-6 py-5 sm:px-8">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                  <Bot size={21} />
-                </div>
-
-                <div>
-                  <h2 className="text-lg font-bold text-slate-900">
-                    Agent Execution Pipeline
-                  </h2>
-
-                  <p className="mt-1 text-sm text-slate-500">
-                    AI agent architecture
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid gap-4 p-6 sm:grid-cols-2 lg:grid-cols-4 sm:p-8">
+          <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-xl shadow-slate-900/5 sm:p-8">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {agentSteps.map((step, index) => {
                 const Icon = step.icon;
 
                 return (
                   <div
                     key={step.title}
-                    className="relative rounded-2xl border border-gray-100 bg-slate-50 p-5"
+                    className="rounded-2xl border border-gray-100 bg-slate-50 p-5"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
@@ -100,14 +83,18 @@ export default function AgenticAIPage() {
                 );
               })}
             </div>
-
-            <div className="mx-6 mb-6 rounded-2xl border border-dashed border-gray-200 bg-gray-50 p-8 text-center sm:mx-8 sm:mb-8">
-              <p className="text-sm font-semibold text-slate-600">
-                Agent execution and tool interaction will be connected to the
-                backend in a later module.
-              </p>
-            </div>
           </div>
+        </div>
+
+        {/* Agent Chat */}
+        <div className="mx-auto mt-8 w-full max-w-5xl">
+          <AIChatShell
+            title="Agent Workspace"
+            description="Interact with the agentic AI execution system."
+            placeholder="Give the agent a task..."
+            emptyTitle="Start an agent task"
+            emptyDescription="Describe a task and the agent will eventually plan, use tools, and execute it."
+          />
         </div>
       </section>
     </main>
