@@ -28,6 +28,7 @@ export default function RAGAIPage() {
 
         <div className="mx-auto mt-12 w-full max-w-4xl">
           <AIChatShell
+            type="rag-ai"
             title="Portfolio Knowledge Assistant"
             description="Ask questions grounded in portfolio knowledge."
             placeholder="Ask about projects, skills, experience..."

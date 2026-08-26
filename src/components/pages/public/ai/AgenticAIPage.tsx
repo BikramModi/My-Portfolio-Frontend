@@ -1,3 +1,7 @@
+
+
+'use client';
+
 import {
   Bot,
   Brain,
@@ -6,6 +10,8 @@ import {
 } from 'lucide-react';
 
 import AIChatShell from './shared/AIChatShell';
+
+import { useAIConversation } from '@/hooks/useAIConversation';
 
 const agentSteps = [
   {
@@ -31,6 +37,13 @@ const agentSteps = [
 ];
 
 export default function AgenticAIPage() {
+
+ const {
+    conversationId,
+    resetConversation,
+  } = useAIConversation();
+
+
   return (
     <main className="min-h-[calc(100vh-5rem)] bg-slate-50">
       <section className="mx-auto flex w-full max-w-7xl flex-col px-6 py-16 sm:px-8 md:py-20 lg:px-10 lg:py-24 xl:px-12">
@@ -89,6 +102,8 @@ export default function AgenticAIPage() {
         {/* Agent Chat */}
         <div className="mx-auto mt-8 w-full max-w-5xl">
           <AIChatShell
+            type="agentic-ai"
+            conversationId={conversationId}
             title="Agent Workspace"
             description="Interact with the agentic AI execution system."
             placeholder="Give the agent a task..."
