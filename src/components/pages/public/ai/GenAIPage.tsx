@@ -24,6 +24,7 @@ export default function GenAIPage() {
 
         <div className="mx-auto mt-12 w-full max-w-4xl">
           <AIChatShell
+            type="gen-ai"
             title="Generative AI Workspace"
             description="Explore conversational AI capabilities."
             placeholder="Ask the generative AI something..."
