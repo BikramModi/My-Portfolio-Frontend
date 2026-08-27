@@ -30,6 +30,7 @@ export async function middleware(request: NextRequest) {
     "/rag-ai",
     "/agentic-ai",
     "/agi-ai",
+    "/upload",
   
   ];
 
