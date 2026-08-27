@@ -11,6 +11,8 @@ import {
   Sparkles,
   Brain,
   Bot,
+  Server,
+  Network,
 } from 'lucide-react';
 
 const navItems = [
@@ -39,6 +41,18 @@ const aiItems = [
     description: 'Autonomous AI agents',
     icon: Bot,
   },
+  {
+    name: 'Ollama AI',
+    href: '/ollama-ai',
+    description: 'Local AI model experiences',
+    icon: Server,
+  },
+  {
+    name: 'AGI AI',
+    href: '/agi-ai',
+    description: 'Future general intelligence',
+    icon: Network,
+  },
 ];
 
 export default function Header() {
@@ -47,7 +61,9 @@ export default function Header() {
   const [open, setOpen] = useState(false);
   const [aiOpen, setAiOpen] = useState(false);
 
-  const isAIActive = aiItems.some((item) => pathname === item.href);
+  const isAIActive = aiItems.some(
+    (item) => pathname === item.href,
+  );
 
   const closeMobileMenu = () => {
     setOpen(false);
@@ -74,7 +90,7 @@ export default function Header() {
               </span>
 
               <p className="mt-1 text-[11px] uppercase tracking-[0.3em] text-gray-500">
-                Full Stack Developer
+                AI + Full Stack Developer
               </p>
             </div>
           </Link>
@@ -115,7 +131,9 @@ export default function Header() {
                 type="button"
                 aria-haspopup="menu"
                 aria-expanded={aiOpen}
-                onClick={() => setAiOpen((value) => !value)}
+                onClick={() =>
+                  setAiOpen((value) => !value)
+                }
                 className={`relative flex items-center gap-1.5 text-sm font-semibold transition-colors duration-300 ${
                   isAIActive
                     ? 'text-blue-600'
@@ -210,12 +228,18 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             type="button"
-            aria-label={open ? 'Close Menu' : 'Open Menu'}
+            aria-label={
+              open ? 'Close Menu' : 'Open Menu'
+            }
             aria-expanded={open}
             onClick={() => setOpen(!open)}
             className="rounded-lg p-2 transition hover:bg-gray-100 md:hidden"
           >
-            {open ? <X size={28} /> : <Menu size={28} />}
+            {open ? (
+              <X size={28} />
+            ) : (
+              <Menu size={28} />
+            )}
           </button>
         </div>
       </div>
@@ -254,7 +278,9 @@ export default function Header() {
               <button
                 type="button"
                 aria-expanded={aiOpen}
-                onClick={() => setAiOpen((value) => !value)}
+                onClick={() =>
+                  setAiOpen((value) => !value)
+                }
                 className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-base font-medium transition ${
                   isAIActive
                     ? 'bg-blue-50 text-blue-600'
@@ -277,7 +303,7 @@ export default function Header() {
               <div
                 className={`overflow-hidden transition-all duration-300 ${
                   aiOpen
-                    ? 'mt-2 max-h-96 opacity-100'
+                    ? 'mt-2 max-h-[600px] opacity-100'
                     : 'max-h-0 opacity-0'
                 }`}
               >

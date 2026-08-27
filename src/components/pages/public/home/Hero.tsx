@@ -90,7 +90,7 @@ export default function Hero() {
                     text-transparent
                   "
                 >
-                  MERN Developer
+                  AI + MERN Developer
                 </span>
               </h1>
             </div>
