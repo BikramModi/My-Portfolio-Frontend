@@ -600,7 +600,7 @@ export default function Hero() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="rounded-2xl bg-slate-50 p-4 text-center transition duration-300 hover:bg-blue-50">
                   <h3 className="text-3xl font-black text-blue-600 sm:text-4xl">
-                    20+
+                    4+
                   </h3>
 
                   <p className="mt-2 text-sm text-slate-500 sm:text-base">
@@ -610,7 +610,7 @@ export default function Hero() {
 
                 <div className="rounded-2xl bg-slate-50 p-4 text-center transition duration-300 hover:bg-blue-50">
                   <h3 className="text-3xl font-black text-blue-600 sm:text-4xl">
-                    10+
+                    13+
                   </h3>
 
                   <p className="mt-2 text-sm text-slate-500 sm:text-base">
