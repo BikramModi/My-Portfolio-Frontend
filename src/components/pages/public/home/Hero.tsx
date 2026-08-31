@@ -257,8 +257,8 @@ export default function Hero() {
                 blur-[80px]
                 sm:h-96
                 sm:w-96
-                lg:h-[520px]
-                lg:w-[520px]
+                lg:h-130
+                lg:w-130
                 lg:blur-[110px]
               "
             />
@@ -273,10 +273,10 @@ export default function Hero() {
                 w-64
                 sm:h-80
                 sm:w-80
-                md:h-[360px]
-                md:w-[360px]
-                lg:h-[440px]
-                lg:w-[440px]
+                md:h-90
+                md:w-90
+                lg:h-110
+                lg:w-110
                 rounded-full
               "
             >
@@ -293,10 +293,10 @@ export default function Hero() {
                 w-64
                 sm:h-80
                 sm:w-80
-                md:h-[360px]
-                md:w-[360px]
-                lg:h-[440px]
-                lg:w-[440px]
+                md:h-90
+                md:w-90
+                lg:h-110
+                lg:w-110
                 rounded-full
               "
             >
@@ -329,7 +329,7 @@ export default function Hero() {
                   absolute
                   inset-0
                   rounded-full
-                  bg-gradient-to-r
+                  bg-linear-to-r
                   from-blue-500
                   to-cyan-400
                   blur-3xl
@@ -402,8 +402,8 @@ export default function Hero() {
                   md:h-80
                   md:w-80
 
-                  lg:h-[390px]
-                  lg:w-[390px]
+                  lg:h-97.5
+                  lg:w-97.5
                 "
               >
                 {/* Animated Lightning Border */}
@@ -419,8 +419,8 @@ export default function Hero() {
     md:h-72
     md:w-72
 
-    lg:h-[360px]
-    lg:w-[360px]
+    lg:h-90
+    lg:w-90
   "
                 >
                   {/* Rotating Electric Ring */}
@@ -429,7 +429,7 @@ export default function Hero() {
       absolute
       inset-0
       rounded-full
-      p-[4px]
+      p-1
       lightning-ring
     "
                   >
@@ -486,7 +486,7 @@ export default function Hero() {
           >
             {/* Background Glow */}
 
-            <div className="absolute inset-0 rounded-[32px] bg-gradient-to-br from-blue-400/10 to-cyan-400/10 blur-2xl" />
+            <div className="absolute inset-0 rounded-4xl bg-linear-to-br from-blue-400/10 to-cyan-400/10 blur-2xl" />
 
             <div
               className="
@@ -581,7 +581,7 @@ export default function Hero() {
 
                 {/* Explore */}
 
-                <div className="group flex items-center gap-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 p-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                <div className="group flex items-center gap-3 rounded-xl bg-linear-to-r from-blue-600 to-cyan-500 p-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl">
                   <ArrowRight
                     size={22}
                     className="transition-transform duration-300 group-hover:translate-x-2"
@@ -593,7 +593,7 @@ export default function Hero() {
 
               {/* Divider */}
 
-              <div className="my-6 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent" />
+              <div className="my-6 h-px bg-linear-to-r from-transparent via-slate-300 to-transparent" />
 
               {/* Stats */}
 
