@@ -318,7 +318,7 @@ export default function Header() {
                 <span className="pointer-events-none absolute right-14 top-1/2 hidden -translate-y-1/2 whitespace-nowrap rounded-lg bg-slate-900 px-3 py-2 text-xs font-semibold text-white opacity-0 shadow-lg transition-all duration-200 group-hover:block group-hover:opacity-100"> 
                   {item.name} 
  
-                  <span className="absolute right-[-4px] top-1/2 h-2 w-2 -translate-y-1/2 rotate-45 bg-slate-900" /> 
+                  <span className="absolute right-1 top-1/2 h-2 w-2 -translate-y-1/2 rotate-45 bg-slate-900" /> 
                 </span> 
               </Link> 
             ); 
