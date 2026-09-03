@@ -216,7 +216,7 @@ export default function Header() {
                   <span>AI Lab</span> 
  
                   <span className="rounded-full bg-blue-600 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white"> 
-                    New 
+                    New+
                   </span> 
                 </div> 
  
