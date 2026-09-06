@@ -282,7 +282,7 @@ export default function Header() {
             className="absolute left-1/2 top-7 bottom-7 w-px -translate-x-1/2 bg-slate-200" 
           /> 
  
-          {aiItems.map((item, index) => { 
+          {aiItems.map((item) => { 
             const Icon = item.icon; 
             const active = pathname === item.href; 
  
