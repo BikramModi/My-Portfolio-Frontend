@@ -213,7 +213,7 @@ export default function Header() {
                     className="text-blue-600" 
                   /> 
  
-                  <span>AI Lab</span> 
+                  <span>AI Lab3</span> 
  
                   <span className="rounded-full bg-blue-600 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white"> 
                     Latest
